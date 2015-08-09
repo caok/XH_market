@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <title><%= language.contact.contactus[local] %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css'/>
+  <link rel='stylesheet' href='/stylesheets/style1.css'/>
+  <link rel="stylesheet" href="/stylesheets/stylePerson.css"/>
+  <link rel="stylesheet" href="/stylesheets/styleOrder.css"/>
+  <link rel="stylesheet" href="/stylesheets/cart.css"/>
+</head>
+<body>
+<div id="contain">
+  <% include ../header.ejs %>
+  <% if (locals.success){ %>
+  <div class="success_area">
+    <p><%= language.contact.hello[local] %><%= success %></p>
+
+    <p><%= language.contact.success[local] %></p>
+    <a href="contact"><%= language.contact.back[local] %></a>
+  </div>
+  <% } else { %>
+  <div>
+    <% include ../img.ejs %>
+    <div class="center2">
+      <div class="shi">
+        <ul class="ulabout">
+          <li class="liabout">
+            <div class="liabout1"><%= language.contact.service[local] %></div>
+          </li>
+          <li class="liabout11">
+            <a href="/contact" class="liabout2" shape="default"><span class="float"><%= language.contact.contactus[local] %></span>
+              <span class="liEnter1">></span>
+            </a>
+          </li>
+          <li class="liabout111">
+            <a href="/delivery" class="aabout"><span class="float"><%= language.contact.shipping[local] %></span>
+              <span class="liEnter1">></span>
+            </a>
+          </li>
+          <li class="liabout111">
+            <a href="/warranty" class="aabout"><span class="float"><%= language.contact.info[local] %></span>
+              <span class="liEnter1">></span>
+            </a>
+          </li>
+          <li class="liabout111">
+            <a href="/refund" class="aabout"><span class="float"><%= language.contact.returns[local] %></span>
+              <span class="liEnter1">></span>
+            </a>
+          </li>
+        </ul>
+        <div class="clear"></div>
+      </div>
+      <div class="divservice">
+        <div class="divhead1">
+          <%= language.contact.leavemessage[local] %>
+        </div>
+        <div>
+          <form action="/contact" method="post" id="form_contact" style="width: 480px">
+            <div class="contact">
+              <div class="contact1"><%= language.contact.theme[local] %></div>
+              <div class="float"><input type="text" class="theme" name="theme"></div>
+              <div class="clear"></div>
+            </div>
+            <label for="theme" class="error float"></label>
+
+            <div class="clear"></div>
+
+            <div class="marginTheme1">
+              <div class="contactName">
+                <div>
+                <div class="contact1"><%= language.contact.name[local] %></div>
+                <div class="float"><input type="text" class="theme1" name="name"/></div>
+                <div class="clear"></div>
+                </div>
+              </div>
+              <div class="contactName floatRight">
+                <div class="contact1"> <%= language.contact.mail[local] %> </div>
+                <div class="float"><input type="text" class="theme1" name="email"/></div>
+                <div class="clear"></div>
+              </div>
+            </div>
+            <label for="name" class="error float"></label>
+            <label for="email" class="error floatRight" <% if(local == 'zh'){ %>style="margin-right: 145px"
+                   <% }if(local == 'en'){ %>style="margin-right: 173px"
+                    <% } %>
+                    ></label>
+
+            <div class="clear"></div>
+
+            <div class="themeMes">
+              <div class="contact11"><%= language.contact.message[local] %></div>
+              <textarea name="message" class="theme2"></textarea>
+            </div>
+            <label for="message" class="error"></label>
+            <div class="clear"></div>
+            <div>
+              <button name="send" class="divcontact3" id="submitMsg"><%= language.contact.submit[local] %></button>
+            </div>
+          </form>
+          <script type="text/javascript" src="/javascripts/jquery.validate.min.js"></script>
+          <script>
+            <% if(local == 'zh'){ %>
+              $("#form_contact").validate({
+                rules: {
+                  name: {required: true,minlength: 2},
+                  theme: {required: true,minlength: 1},
+                  email: {required: true,email: true},
+                  message: {required: true}
+                },
+                messages: {
+                  name: {required: "请输入姓名",minlength: "姓名最少两个字符"},
+                  theme: {required: "主题不能为空",minlength: "主题不能为空"},
+                  email: {required: "请输入Email地址",email: "请输入正确的Email地址"},
+                  message: {required: "内容不能为空"}
+                }
+              });
+            <% }if(local == 'en'){ %>
+              $("#form_contact").validate({
+                rules: {
+                  name: {
+                    required: true,
+                    minlength: 2
+                  },
+                  theme: {
+                    required: true,
+                    minlength: 1
+                  },
+                  email: {
+                    required: true,
+                    email: true
+                  },
+                  message: {
+                    required: true
+                  }
+                },
+                messages: {
+                  name: {
+                    required: "Please enter your name",
+                    minlength: "Name at least two characters"
+                  },
+                  theme: {
+                    required: "Please enter the theme",
+                    minlength: "Please enter the theme"
+                  },
+                  email: {
+                    required: "Enter Email",
+                    email: "Please enter a valid Email address"
+                  },
+                  message: {
+                    required: "Please enter the message"
+                  }
+                }
+              });
+            <% } %>
+          </script>
+        </div>
+        <div>
+          <div class="divhead3"><%= language.contact.contactway[local] %></div>
+          <div class="divcontact4"> <%= language.contact.email[local] %>：<%= contact.content.email %></div>
+          <div class="divcontact4"><%= language.contact.phone[local] %>：<%= contact.content.tel %> </div>
+          <div class="divcontact4" style="margin-bottom:20px"> <%= language.contact.fax[local] %>
+            ：<%= contact.content.fax %></div>
+          <div class="divhead3"><%= language.contact.adress[local] %></div>
+          <div class="divcontact4"><%= contact.content.address[local] %></div>
+        </div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div style="clear:both;"></div>
+  </div>
+</div>
+
+<% } %>
+<% include ../footer.ejs %>
+</body>
+</html>

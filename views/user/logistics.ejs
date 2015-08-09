@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>
+    <%= language.order.personalCenter[local] %>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel='stylesheet' href='/stylesheets/style1.css' />
+  <link rel="stylesheet" href="/stylesheets/stylePerson.css" />
+  <link rel="stylesheet" href="/stylesheets/styleOrder.css" />
+  <link rel="stylesheet" href="/stylesheets/cart.css" />
+</head>
+
+<body>
+<div id="contain">
+  <% include ../header.ejs %>
+  <div class="evaluate1">
+    <ul class="ulPerson">
+      <li class="orderNav1">
+        <div style="margin-bottom: 10px;height: 45px;width: 100%;">
+          <img src="/images/person.jpg" class="person_pic" /><span class="tdPerson"><%= current_user %></span>
+        </div>
+      </li>
+
+      <li class="orderNav11">
+        <a href="/orders" class="liPerson1">
+          <%= language.order.allOrders[local] %>
+          <div class="enterOrder">></div>
+        </a>
+      </li>
+      <li class="orderNav11">
+        <a class="liPerson1" href="/payment">
+          <%= language.order.pendingPayment[local] %>
+          <div class="enterOrder">></div>
+        </a>
+      </li>
+      <li class="orderNav111">
+        <a class="liPerson11" href="/receiving">
+          <%= language.order.uponReceipt[local] %>
+          <div class="enterOrder">></div>
+        </a>
+      </li>
+      <li class="orderNav11">
+        <a class="liPerson1" href="/evaluation">
+          <%= language.order.toBeEvaluated[local] %>
+          <div class="enterOrder">></div>
+        </a>
+      </li>
+      <li class="orderNav11">
+        <a class="liPerson1" href="/returns">
+          <%= language.order.returnGoods[local] %>
+          <div class="enterOrder">></div>
+        </a>
+      </li>
+      <li class="orderNav11">
+        <a class="liPerson1" href="/user">
+          <%= language.order.personalCenter[local] %>
+          <div class="enterOrder">></div>
+        </a>
+      </li>
+    </ul>
+    <div style="width: 70%;float:left;">
+      <div class="viewLogistics">
+        <div>
+          <div class="personMassege2">
+            <div style="float: right;display:block;">
+               <a class="dealMessage height" style="width: 100%" href="/receiving">
+                 <img src="/images/back.png" class="fanhui">&nbsp;<%= language.order.back[local] %>
+               </a>
+            </div>
+       <span class="personMassege1">
+         <%= language.order.totalPrice[local] %>：￥<%= order.pay %> (<%=language.other.freight[local]%>: ￥<%= order.freight || 0 %>)
+        </span>
+          </div>
+        </div>
+        <div class="list111">
+          <% order.products.forEach(function(pd){ %>
+            <div class="wap">
+              <a href="/product/<%= pd.productId %>" class="gap"><img src="<%= pd.coverUrl %>" width="104px" height="104px"></a>
+              <div class="sap">
+                <div class="price">
+                  &nbsp;<%= pd.name[local] %></br>￥<%= pd.price %></br>&nbsp;x<%= pd.quantity %></br>
+                </div>
+              </div>
+              <div class="clear"></div>
+            </div>
+          <% }) %>
+        </div>
+        <div class="dash">
+          <div style="margin-left:16px;margin-top:16px">
+            <div class="fontLogistics">
+              <%= language.order.deliveryDetails[local] %>
+            </div>
+
+            <div  style="margin-top: 20px">
+              <div>
+                <span class="font151"><%= language.order.logisticsCompany[local] %>：</span>
+                <span class="font151"><%= order.logisticsInfo.company %></span>
+              </div>
+              <div style="margin-bottom:18px;">
+                <span class="font151"><%= language.order.waybillNumber[local] %>：</span>
+                <span class="font151"><%= order.logisticsInfo.number %></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% include ../footer.ejs %>
+</body>
+
+</html>

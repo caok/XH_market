@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title><%=language.video.title[local]%></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel='stylesheet' href="/stylesheets/style1.css"/>
+  <link rel='stylesheet' href="/stylesheets/stylePerson.css"/>
+  <link rel='stylesheet' href="/stylesheets/styleOrder.css" />
+  <link rel='stylesheet' href="/stylesheets/cart.css"/>
+</head>
+<body>
+  <%include ../header.ejs%>
+  <div>
+   <%include ../img.ejs%>
+    <div class="fullVideo">
+      <div>
+        <table>
+          <tr>
+            <td >
+                <a href="" class="font20 color1"><%= vcategory.name[local] %>&nbsp;>&nbsp;</a>
+            </td>
+            <td class="font20">
+             <%= video.name[local] %>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="full">
+        <!--<video src="<%= video.url %>" controls="controls" class="video_width"></video>-->
+        <iframe class="video_width" src="http://player.youku.com/embed/XNzE0Nzc0OTQ0" frameborder=0
+                allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+  <% include ../footer.ejs %>
+</body>
+<script>
+  $(function () {
+    $(window).resize(function () {
+      var div_width = $('.video_width').width();
+      $('.video_width').height(0.75 * div_width);
+    });
+    $(window).load(function () {
+      var div_width = $('.video_width').width();
+      $('.video_width').height(0.75 * div_width);
+    });
+  });
+</script>
+</html>
+
+

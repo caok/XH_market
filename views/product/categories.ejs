@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title><%=language.products.allProducts[local]%></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel='stylesheet' href='/stylesheets/style1.css'/>
+    <link rel="stylesheet" href="/stylesheets/stylePerson.css"/>
+    <link rel="stylesheet" href="/stylesheets/styleOrder.css"/>
+    <link rel="stylesheet" href="/stylesheets/cart.css"/>
+</head>
+<body>
+<div id="contain">
+    <% include ../header.ejs %>
+    <div>
+        <% include ../img.ejs %>
+        <div class="all">
+            <div class="allProduct">
+                <div class="allProduct1">
+                    <span class="font20"><%=language.products.allProducts[local]%></span>
+                </div>
+                <% rowindex = 0 %>
+                <% categories.forEach(function(category){ %>
+                <% if(rowindex % 3 === 0){ %>
+                <div class="divproduct">
+                    <% } %>
+                    <% rowindex += 1 %>
+                    <a href="/category/<%= category._id %>">
+                        <div class="productDistance">
+                            <img src="<%= category.imgUrl %>" class="product"/>
+
+                            <div class="productName">
+                                <% if(local == "zh"){ %>
+                                <%= category.name %>
+                                <% } else { %>
+                                <%= category.enName %>
+                                <% } %>
+                            </div>
+                        </div>
+                    </a>
+                    <% if(rowindex % 3 === 0 || rowindex === categories.length){ %>
+                </div>
+                <div style="clear:both;">
+                </div>
+                <% } %>
+                <% }) %>
+                <div class="marginBottom4">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<% include ../footer.ejs %>
+</body>
+</html>

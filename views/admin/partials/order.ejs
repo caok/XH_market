@@ -1,0 +1,118 @@
+<div class="group">
+  <h3>订单信息</h3>
+  <div style="float: right">
+    <a href="#/order/{{order._id}}/delivery" class="btn btn-primary btn-xs" ng-show="order.state == 1">
+      <span class="glyphicon glyphicon-send"></span>发货
+    </a>
+    <a href="#/order/{{order._id}}/close" class="btn btn-danger btn-xs" ng-show="order.state == 1">
+      <span class="glyphicon glyphicon-remove"></span>关闭订单
+    </a>
+    <a href="#/order/{{order._id}}/delivery" class="btn btn-primary btn-xs" ng-show="order.state == 2">
+      <span class="glyphicon glyphicon-edit"></span>修改发货信息
+    </a>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label">订单编号: </label>
+
+    <div class="col-sm-10" style="padding-top: 7px">{{order._id}}</div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label">下单人: </label>
+
+    <div class="col-sm-10" style="padding-top: 7px">
+      {{order.userName}}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label">购买的产品: </label>
+
+    <div class="col-sm-10">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <td>商品编号</td>
+          <td>商品名称</td>
+          <td>单价</td>
+          <td>数量</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="pd in order.products">
+          <td>{{pd._id}}</td>
+          <td>
+            {{pd.name['zh']}}
+          </td>
+          <td>
+            {{pd.price}}
+          </td>
+          <td>
+            {{pd.quantity}}
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label">总金额: </label>
+
+    <div class="col-sm-10" style="padding-top: 7px">
+      {{order.pay}}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label">下单时间: </label>
+
+    <div class="col-sm-10" style="padding-top: 7px">
+      {{order.happenedAt | date:"yyyy-MM-dd HH:mm"}}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label">订单状态: </label>
+
+    <div class="col-sm-10" style="padding-top: 7px">
+      {{order.state | orderstatus}}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label" ng-show="order.state == 7">关闭理由: </label>
+
+    <div class="col-sm-10" style="padding-top: 7px">
+      {{order.closeReason}}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label" ng-show="order.state == 5 || order.state == 6">退货理由: </label>
+
+    <div class="col-sm-10" style="padding-top: 7px">
+      {{order.returnReason}}
+    </div>
+  </div>
+</div>
+<div class="group">
+  <h3>物流信息</h3>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">物流公司: </label>
+
+    <div class="col-sm-10" style="padding-top: 7px">
+      {{order.logisticsInfo.company}}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label">订单编号: </label>
+
+    <div class="col-sm-10" style="padding-top: 7px">
+      {{order.logisticsInfo.number}}
+    </div>
+  </div>
+</div>
+

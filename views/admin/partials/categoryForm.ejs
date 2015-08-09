@@ -1,0 +1,40 @@
+<div class="alert">
+  {{alert}}
+</div>
+
+<div class="form-group">
+  <label class="col-sm-2 control-label">名称: </label>
+  <div class="col-sm-8">
+    <input type="text" class="form-control" ng-model='category.name' required />
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-sm-2 control-label">英文名称: </label>
+  <div class="col-sm-8">
+    <input type="text" class="form-control" ng-model='category.enName' required />
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-sm-2 control-label">图片: </label>
+  <div class="col-sm-10">
+    <img class="middle" ng-src="{{category.imgUrl}}">
+    <span class="help-block">建议尺寸: 385*221px&nbsp;&nbsp;或&nbsp;&nbsp;相同长宽比例</span>
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="col-sm-offset-2 col-sm-10">
+    <span class="btn btn-success fileinput-button">
+      <i class="glyphicon glyphicon-plus"></i>
+      <span>上传图片</span>
+      <input id="imgupload" type="file" fileupload name="files" data-url="/upload" done="uploadFinished(e, data, 'imgUrl')">
+    </span>
+  </div>
+</div>
+
+<div id="submitDiv" class="container">
+  <a class="btn btn-warning" href='#/category'>撤销</a>
+  <button class="btn btn-primary" ng-disabled="form.$invalid || form.$pristine" ng-click="submit()">提交</button>
+</div>

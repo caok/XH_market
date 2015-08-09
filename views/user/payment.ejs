@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= language.order.paymentTitle[local] %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel='stylesheet' href='/stylesheets/style1.css'/>
+    <link rel="stylesheet" href="/stylesheets/stylePerson.css"/>
+    <link rel="stylesheet" href="/stylesheets/styleOrder.css"/>
+    <link rel="stylesheet" href="/stylesheets/cart.css"/>
+</head>
+<body>
+<div id="contain">
+  <div class="div_div">
+    <div class="cancelOrder">
+      <div class="cancelOrder_font"><%= language.order.delOrder[local] %></div>
+      <div class="cancelOrder_font2"><%= language.order.delOrder2[local] %></div>
+      <div class="cancelOrder_div">
+        <form id='cancelOrder'>
+          <div><input type="radio" name="cancelOrder" class="rd" value="不想买了"><%= language.order.yuanYin1[local] %></div>
+          <div><input type="radio" name="cancelOrder" class="rd" value="找了别家"><%= language.order.yuanYin2[local] %></div>
+          <div><input type="radio" name="cancelOrder" class="rd" value="缺货"><%= language.order.yuanYin3[local] %></div>
+          <div><input type="radio" name="cancelOrder" class="rd" value="其他原因"><%= language.order.yuanYin4[local] %></div>
+          <div><input type="radio" name="cancelOrder" class="rd" value="信息填错，重新拍"><%= language.order.yuanYin5[local] %></div>
+        </form>
+      </div>
+      <a class="quXiao"><%=language.myCart.no[local]%></a>
+      <a class="queDing" ><%=language.myCart.yes[local]%></a>
+    </div>
+  </div>
+  <% include ../header.ejs %>
+    <div class="evaluate1">
+        <ul class="ulPerson">
+            <li class="orderNav1">
+                 <div style="margin-bottom: 10px;">
+                  <div style="margin-bottom: 10px;height: 45px;width: 100%;">
+                    <img src="/images/person.jpg" class="person_pic"/><span class="tdPerson"><%= current_user %></span>
+                  </div>
+                </div>
+            </li>
+
+            <li class="orderNav11">
+                 <a href="/orders" class="liPerson1"><%= language.order.allOrders[local] %><div class="enterOrder">></div></a>
+            </li>
+          <li class="orderNav111">
+            <a class="liPerson11" href="/payment"><%= language.order.pendingPayment[local] %><div class="enterOrder">></div></a>
+          </li>
+          <li class="orderNav11">
+                  <a class="liPerson1 " href="/receiving"><%= language.order.uponReceipt[local] %><div class="enterOrder">></div> </a>
+            </li>
+            <li class="orderNav11">
+                 <a class="liPerson1" href="/evaluation"><%= language.order.toBeEvaluated[local] %><div class="enterOrder">></div></a>
+            </li>
+          <li class="orderNav11">
+            <a class="liPerson1" href="/returns">
+              <%= language.order.returnGoods[local] %>
+              <div class="enterOrder">></div>
+            </a>
+          </li>
+          <li class="orderNav11">
+            <a  class="liPerson1" href="/user"><%= language.order.personalCenter[local] %><div class="enterOrder">></div></a>
+          </li>
+        </ul>
+        <div class="dingdan">
+          <% orders.forEach(function(order){ %>
+            <div class="order1" id="<%= order._id %>">
+                <div class="personMassege2">
+                    <div>
+                      <a class="surePay" href='/chosepayment/<%= order._id %>'><%=language.order.confirmPaying[local]%></a>
+                      <a class="accountExit" onclick="cancelorder('<%= order._id %>')"><%=language.order.cancelOrder[local]%></a>
+                    </div>
+                    <div class="personMassege1"><%= language.order.totalPrice[local] %>：￥<%= order.pay %> (<%=language.other.freight[local]%>: ￥<%= order.freight || 0 %>)</div>
+                </div>
+                <div class="list1">
+                  <% order.products.forEach(function(pd){ %>
+                    <div class="wap">
+                      <a href="/product/<%= pd.productId %>" class="gap">
+                        <img src="<%= pd.coverUrl %>" width="104px" height="104px"  />
+                      </a>
+                      <div class="sap">
+                        <div class="price">
+                          &nbsp;<%= pd.name[local] %></br>￥<%= pd.price %></br>&nbsp;x<%= pd.quantity %>
+                        </div>
+                      </div>
+                      <div class="clear"></div>
+                    </div>
+                <% }) %>
+                </div>
+                <div class="solid1">
+                  <div class="dealMessage ">
+                    <span class="arrow" id="arrow1"></span><div class="floatRight"><%=language.order.detail[local]%></div>
+                  </div>
+                    <div class="makeDeal">
+                      <% if(order.state == 3 || order.state == 4){ %>
+                      <%=language.other.yuTrading[local]%> <%= format_datetime(order.receivedTime, false) %> <%=language.other.tradingSuccess[local]%>
+                      <% } else if (order.state == 2){ %>
+                      <%=language.other.yuShip[local]%> <%= format_datetime(order.deliveryTime, false) %> <%=language.other.ship[local]%>
+                      <% } else if (order.state == 1){ %>
+                      <%=language.other.yuPayment[local]%> <%= format_datetime(order.paymentTime, false) %> <%=language.other.payment[local]%>
+                      <% } %>
+                    </div>
+                  <div class="clear"></div>
+                </div>
+              <script>
+                  $("#<%= order._id %> .dealMessage").click(function(){
+                    if($("#<%= order._id %> #orderInfo").attr("class")=="disabled_none"){
+                      $("#<%= order._id %> #orderInfo").removeClass("disabled_none")
+                      $("#<%= order._id %> #arrow1").css("background","url('../images/arrow1.png')");
+                    }else{
+                      $("#<%= order._id %> #orderInfo").addClass("disabled_none")
+                      $("#<%= order._id %> #arrow1").css("background","url('../images/arrow2.png')");
+                    }
+                  });
+                $(window).load(function () {
+                  var div_height = $('#contain').height();
+                  $('.div_div').height(div_height + 285);
+                });
+                function cancelorder(id){
+                  $('.div_div').css('display', 'inherit');
+                  var top = ($(window).height() - $('.cancelOrder').height()) / 2;
+                  var left = ($(window).width() - $('.cancelOrder').width()) / 2;
+                  var scrollTop = $(document).scrollTop();
+                  var scrollLeft = $(document).scrollLeft();
+                  $('.cancelOrder').css({ position: 'absolute', 'top': top + scrollTop, left: left + scrollLeft }).show();
+                  $('.queDing').click(function () {
+                    var text = $('#cancelOrder input:radio[name="cancelOrder"]:checked').val();
+                    $.ajax({
+                      url: "cancelorder/"+id,
+                      type: "POST",
+                      data: {closeReason: text},
+                      success: function(res){
+                        if (res.result === "success") {
+                          window.location.href="/orders";
+                        }
+                      }
+                    });
+                  })
+                }
+                $('.quXiao').click(function () {
+                  $('.div_div').css('display', 'none')
+                })
+
+              </script>
+              <div id="orderInfo" class="disabled_none">
+                <div class="solid2">
+                    <div>
+                        <div class="zhankai">
+                            <%= language.order.orderDetails[local] %>
+                        </div>
+                        <div class="xiangqing">
+                          <%= language.order.ordersAccount[local] %>：<%= order._id %>
+                        </div>
+                        <div class="xiangqing">
+                          <%= language.order.singleTime[local] %>：<%= format_datetime(order.happenedAt, false) %>
+                        </div>
+                        <div class="xiangqing">
+                          <%= language.order.ordeStatus[local] %>：<%= format_orderstate(order.state) %>
+                        </div>
+                    </div>
+                  <% if(order.address){ %>
+                    <div>
+                      <div class="zhankai1">
+                        <%=language.order.deliveryInformation[local] %>
+                      </div>
+                      <div class="xiangqing">
+                        <%=language.myOrder.receiver[local] %>：<%= order.address.receiver %>
+                      </div>
+                      <div class="xiangqing">
+                        <%=language.myOrder.tel[local] %>：<%= order.address.tel %>
+                      </div>
+                      <div class="xiangqing">
+                        <%=language.order.deliveryAddress[local] %>：<%= order.address.street %>
+                      </div>
+                    </div>
+                  <% } %>
+                </div>
+              </div>
+            </div>
+          <% }) %>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+<% include ../footer.ejs %>
+</body>
+</html>

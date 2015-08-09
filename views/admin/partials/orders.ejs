@@ -1,0 +1,71 @@
+<h3>订单</h3>
+
+<div class="form-group">
+  <label class="col-sm-8 control-label">订单状态: </label>
+  <div class="col-sm-3">
+    <select ng-model="searchstate" class="form-control">
+      <option value='all'>所有</option>
+      <option value=1>已付款,未发货</option>
+      <option value=2>已发货,未收货</option>
+      <option value=3>已收货,未评价</option>
+      <option value=4>已评价</option>
+      <option value=5>请求退货</option>
+      <option value=6>退货成功</option>
+      <option value=7>关闭</option>
+    </select>
+  </div>
+  <div class="col-sm-1">
+    <button class="btn btn-primary btn-sm" ng-click="search()">
+      搜索
+    </button>
+  </div>
+</div>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+     <td class="col-sm-3">订单编号</td>
+     <td>金额</td>
+     <td>状态</td>
+     <td>下单时间</td>
+     <td>付款时间</td>
+     <td>操作</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="order in orders" ng-class="{warning:order.state===1}">
+      <td>{{order._id}}</td>
+      <td>
+        {{order.pay}}
+      </td>
+      <td>
+        {{order.state | orderstatus}}
+      </td>
+      <td>
+        {{order.happenedAt | date:"yyyy-MM-dd HH:mm"}}
+      </td>
+      <td>
+        {{order.paymentTime | date:"yyyy-MM-dd HH:mm"}}
+      </td>
+      <td class="action">
+        <a href="#/order/{{order._id}}" class="btn btn-info btn-xs">
+          <span class="glyphicon glyphicon-th"></span>详情
+        </a>
+        <a href="#/order/{{order._id}}/delivery" class="btn btn-primary btn-xs" ng-show="order.state == 1">
+          <span class="glyphicon glyphicon-send"></span>发货
+        </a>
+        <a href="#/order/{{order._id}}/close" class="btn btn-danger btn-xs" ng-show="order.state == 1">
+          <span class="glyphicon glyphicon-remove"></span>关闭订单
+        </a>
+        <button class="btn btn-warning btn-xs" ng-show="order.state == 5" ng-click="submitReturn(order._id)">
+          <span class="glyphicon glyphicon-ok"></span>完成退货
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ul class="pager">
+  <li class="previous"><a ng-click='previousPage()' href="" ng-show="page > 1">Previous</a></li>
+  <li class="next"><a ng-click='nextPage()' href="" ng-show="pages > 1 && page != pages">Next</a></li>
+</ul>

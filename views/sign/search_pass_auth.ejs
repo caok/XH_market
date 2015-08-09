@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%=language.resetfist.title[local]%></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/style1.css' />
+</head>
+<body>
+<div id="contain">
+<%include ../header.ejs%>
+ <div class="centerfinishreset">
+    <div class="divreset1">
+      <%if(local=='zh'){%>
+      <div class="returnPassword">
+        <%= language.resetfist.searchpass[local] %>
+      </div>
+      <%}if(local=='en'){%>
+      <div class="returnPassword" style="width: 300px">
+        <%= language.resetfist.searchpass[local] %>
+      </div>
+      <%}%>
+  </div>
+   <div class="divreset">
+     <table style="width: 100%">
+       <tr>
+         <td class="div2 divreset2" style="width: 10%">
+           <%=language.resetfist.name[local]%>
+         </td>
+         <td style="width: 20%">
+           <div style="width: 90%;height: 3px;background-color: #c7c7c7;margin-left: auto;margin-right: auto"></div>
+         </td>
+         <td class="div2 divreset2" style="width:10%">
+           <%=language.resetfist.identity[local]%>
+         </td>
+         <td style="width:20%">
+           <div style="width: 90%;height: 3px;background-color: #c7c7c7;margin-left: auto;margin-right: auto"></div>
+         </td>
+         <td class="div2" style="width:10%">
+           <%=language.resetfist.reset[local]%>
+         </td>
+         <td style="width:20%">
+           <div style="width: 90%;height: 3px;background-color: #c7c7c7;margin-left: auto;margin-right: auto"></div>
+         </td>
+         <td class="div2" style="width:10%;text-align: left;padding-left: 1em">
+           <%=language.resetfist.success[local]%>
+         </td>
+       </tr>
+     </table>
+   </div>
+    <div style="width: 55%;margin-right: auto;margin-left: auto">
+        <div class="establishID">
+<!--<div class="float">-->
+              <img src="/images/ico.jpg" width="41" height="41" class="float" style="margin-right: 10px"/>
+            <!--</div>-->
+            <span class="establishID1" style="width: 85%"><%=language.resetfist.mailsuccess[local]%></span>
+            <div class="clear"></div>
+        </div>
+
+        <!--<div >-->
+            <!--<button name="next" class="continue" style="width: 20%"><%=language.resetfist.next[local]%></button>-->
+         <!--</div>-->
+    </div>
+
+</div>
+</div>
+<%include ../footer.ejs%>
+</body>
+</html>
+

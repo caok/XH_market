@@ -1,0 +1,41 @@
+<div class="form-group">
+<h3>产品类别</h3>
+
+<div class="pull-right">
+  <a href="#/category/new" class="btn btn-primary btn-sm">
+    <span class="glyphicon glyphicon-plus">新建</span>
+  </a>
+</div>
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <td class="col-sm-1"></td>
+    <td class="col-sm-3">名称</td>
+    <td class="col-sm-4">名称(English)</td>
+    <td class="col-sm-4">操作</td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="category in categories">
+    <td>{{$index + 1}}</td>
+    <td>
+      {{category.name}}
+    </td>
+    <td>
+      {{category.enName}}
+    </td>
+    <td class="action">
+      <a href="#/category/{{category._id}}/product" class="btn btn-info btn-xs">
+        <span class="glyphicon glyphicon-th"></span>详情
+      </a>
+      <a href="#/category/{{category._id}}" class="btn btn-warning btn-xs">
+        <span class="glyphicon glyphicon-edit"></span>编辑
+      </a>
+      <a href="javascript:void(0)" ng-click="rmCategory(category._id)" class="btn btn-danger btn-xs">
+        <span class="glyphicon glyphicon-remove"></span>删除
+      </a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</div>

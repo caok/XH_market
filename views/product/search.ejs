@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>FITTERGEAR</title>
+  <link rel='stylesheet' href='/stylesheets/style.css'/>
+  <link rel='stylesheet' href='/stylesheets/style1.css'/>
+  <link rel="stylesheet" href="/stylesheets/stylePerson.css"/>
+  <link rel="stylesheet" href="/stylesheets/styleOrder.css"/>
+  <link rel="stylesheet" href="/stylesheets/cart.css"/>
+</head>
+<body>
+<div id="contain">
+  <% include ../header.ejs %>
+  <div>
+    <% include ../img.ejs %>
+<!--<%= products.length %>-->
+    <div style="width: 90%;margin-left: auto;margin-right: auto">
+      <div class="productSort">
+            <!--图片区-->
+            <div style="float: left;height: 100%">
+              <% products.forEach(function(pd){ %>
+              <div class="productPrice_search" id="pro_pic">
+                <a href="/product/<%= pd._id %>">
+                  <img src="<%= pd.images[pd.coverIndex] %>">
+                  <img src="/images/hengxian.jpg" style="height: 4px">
+
+                  <div class="productPrice1_search">
+                    <div class="fontPrice"><%= pd.name[local] %></div>
+                    <div class="fontPrice1" style="margin-top: 0px">￥<%= pd.price %></div>
+                  </div>
+                </a>
+              </div>
+              <% }) %>
+            </div>
+
+            <div style="clear:both;"></div>
+          </div>
+          <div style="margin-bottom:68px;"></div>
+        </div>
+        <script>
+          $(function () {
+            $(window).resize(function () {
+              var div_width = $('.productPrice_search').width();
+              $('.productPrice_search').height(1.4 * div_width);
+            });
+            $(window).load(function () {
+              var div_width = $('.productPrice_search').width();
+              $('.productPrice_search').height(1.4 * div_width);
+            });
+          });
+        </script>
+      </div>
+    </div>
+  </div>
+</div>
+<% include ../footer.ejs %>
+</body>
+</html>

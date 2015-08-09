@@ -1,0 +1,393 @@
+.person-centered {
+  margin-bottom:89px;
+  margin-top:60px;
+  margin-left:60px;
+}
+.person {
+  line-height:25px;
+  text-align:center;
+  font-size:12px;
+  font-family:'calibri','Microsoft Yahei','宋体';
+  color:#000000;
+  display:inline-block;
+}
+.tdPerson1 {
+  width:70px;
+  text-align:center;
+  vertical-align:bottom;
+}
+.personCenter {
+  width:30.7%;
+  height:25px;
+  background-color:#ffde05;
+  text-align:center;
+  float:right;
+  margin-top:34px;
+}
+.ulPerson {
+  float:left;
+  width:23%;
+  margin-left: 4%;
+  /*height:226px;*/
+  border:2px solid #f1f1f1;
+  box-shadow:5px 0px 50px #f8f8f8;
+  list-style-type:none;
+  font-family:'calibri','Microsoft Yahei','宋体';
+}
+.orderNav1 {
+  height:74px;
+  border-bottom:1px solid #e9e9e9;
+  background-color:#ffffff;
+}
+.orderNav11 {
+  border-bottom:1px solid #e9e9e9;
+  background-color:#ffffff;
+  height:37px;
+}
+.orderNav11:hover {
+  background-color:#444343;
+}
+.orderNav11:hover a {
+  color: #ffffff;
+}
+.orderNav111 {
+  border-bottom:1px solid #e9e9e9;
+  height:37px;
+  background-color:#444343;
+}
+.liPerson1 {
+  width:100%;
+  line-height:37px;
+  height:37px;
+  font-family:'calibri','Microsoft Yahei','宋体';
+  font-size:15px;
+  color:#838383;
+  padding-left:22px;
+  display:inline-block;
+}
+.liPerson11 {
+  width:100%;
+  line-height:37px;
+  height:37px;
+  font-family:'calibri','Microsoft Yahei','宋体';
+  font-size:15px;
+  color:#ffffff;
+  padding-left:22px;
+  display:inline-block;
+}
+.liPerson111 {
+  width:255px;
+  line-height:74px;
+  height:74px;
+  font-family:'calibri','Microsoft Yahei','宋体';
+  font-size:15px;
+  color:#ffffff;
+  padding-left:22px;
+}
+.liEnter {
+  font-family:'calibri','Microsoft Yahei','宋体';
+  font-size:15px;
+  color:#838383;
+  float:right;
+  padding-right:21px;
+}
+.enterOrder {
+  line-height:37px;
+  font-family:'calibri','Microsoft Yahei','宋体';
+  font-size:15px;
+  color:#838383;
+  float:right;
+  padding-right:21px;
+}
+.liEnter1 {
+  font-family:'calibri','Microsoft Yahei','宋体';
+  font-size:15px;
+  width: 3%;
+  color:#838383;
+  line-height:34px;
+  float:right;
+/*padding-right:15px;*/
+}
+.liEnter2 {
+  font-family:'calibri','Microsoft Yahei','宋体';
+  font-size:15px;
+  color:#525252;
+  float:right;
+  padding-right:15px;
+  line-height:56px;
+}
+.liPerson2 {
+  display:table-cell;
+  vertical-align:middle;
+  height:37px;
+  font-family:'calibri','Microsoft Yahei','宋体';
+  font-size:15px;
+  color:#ffffff;
+  padding-left:22px;
+  background-color:#444343;
+}
+.tdPerson {
+  /*font-size:20px;*/
+  font-family:'calibri','Microsoft Yahei','宋体';
+  white-space:nowrap;
+  margin-left: 10px;
+}
+.person_pic {
+  width: 47px;
+  height:42px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.personMassege {
+  border:7px solid #f1f0f0;
+  width:86%;
+  float:left;
+  margin-left:14%;
+}
+.personMassege2 {
+  width: 100%;
+  height:55px;
+  border-bottom:2px solid #f2f2f2;
+}
+.personMassege2 a{
+  color: #000000;
+}
+.personMassege2 a:hover{
+  text-decoration: underline;
+}
+.personMassege2 a:hover span{
+  text-decoration: underline;
+}
+.personMassege1 {
+  line-height:55px;
+  height: 55px;
+  font-family:'calibri','Microsoft Yahei','宋体';
+  font-size:20px;
+  padding-left:16px;
+}
+.accountExit {
+  height:25px;
+  min-width: 86px;
+  padding-left: 15px;
+  padding-right: 15px;
+  line-height:25px;
+  text-align:center;
+  background:#ffde05;
+  font-size:14px;
+  font-family:'calibri','Microsoft Yahei','宋体';
+  float: right;
+  margin-top:16px;
+  display:inline-block;
+  color:#000000;
+  cursor: pointer;
+  margin-right: 17px;
+}
+.surePay {
+  padding-left: 15px;
+  padding-right: 15px;
+  height:25px;
+min-width: 86px;
+  text-align:center;
+  line-height:25px;
+  background:#ffde05;
+  font-size:14px;
+  float: right;
+  margin-top:16px;
+  margin-right:17px;
+  display:inline-block;
+  cursor: pointer;
+}
+.edit {
+  width:108px;
+  height:25px;
+  text-align:center;
+  line-height:25px;
+  background:#ffde05;
+  font-size:15px;
+  float: right;
+  margin-left:10px;
+  margin-top:16px;
+  margin-right:17px;
+  display:inline-block;
+}
+.edit1 {
+  width:103px;
+  height:25px;
+  text-align:center;
+  line-height:25px;
+  background:#ffde05;
+  font-size:15px;
+  font-family:'calibri','Microsoft Yahei','宋体';
+  float: right;
+  margin-top:16px;
+  margin-right:17px;
+  display: inline-block;
+}
+.pingjia {
+  width:103px;
+  height:25px;
+  line-height:25px;
+  background:#ffde05;
+  font-size:15px;
+  font-family:'calibri','Microsoft Yahei','宋体';
+  float: right;
+  margin-top:16px;
+  margin-right:17px;
+  text-align:center;
+  border:0px;
+  display:inline-block;
+}
+.arrow {
+  float: right;
+  margin-top: 17px;
+  margin-right: 10px;
+  margin-left: 5px;
+  width:11px;
+  height:7px;
+  background: url("../images/arrow2.png") no-repeat;
+}
+.continueShopping {
+  /*width:12.5%;*/
+  padding-right: 10px;
+  padding-left: 10px;
+  min-width: 115px;
+  height:35px;
+  line-height:35px;
+  text-align:center;
+  font-size:14px;
+  color:#000000;
+  background:#f1f0f0;
+  border:0px;
+  display:inline-block;
+  margin-right: 10px;
+}
+.continueShopping:hover{
+  text-decoration: underline;
+}
+.closingAccount:hover{
+  text-decoration: underline;
+}
+.closingAccount {
+  width:12.5%;
+  min-width: 115px;
+  height:35px;
+  line-height:35px;
+  text-align:center;
+  background:#ffde05;
+  font-size:14px;
+  color:#000000;
+  margin-top:33px;
+  border:0px;
+  display:inline-block;
+}
+.reviews {
+  width:127px;
+  height:41px;
+  text-align:center;
+  background:#ffde05;
+  font-size:18px;
+  font-family:'calibri','Microsoft Yahei','宋体';
+  margin-left:856px;
+  margin-top:33px;
+  border:none;
+  letter-spacing:9px;
+}
+.reviews1 {
+  width:175px;
+  height:41px;
+  text-align:center;
+  background:#ffde05;
+  font-size:18px;
+  font-family:'calibri','Microsoft Yahei','宋体';
+  margin-left:808px;
+  margin-top:33px;
+  border:none;
+  letter-spacing:9px;
+}
+.message {
+  font-size:16px;
+  font-family:'calibri','Microsoft Yahei','宋体';
+  color:#838383;
+  line-height:36px;
+}
+.tableMessage {
+  margin-left:16px;
+  margin-top:25px;
+  margin-bottom:25px;
+}
+.xiugai{
+  padding:17px 0px 31px 0px;
+  font-size:14px;
+  text-align:left;
+}
+.mimaming{
+  font-size:14px;
+  line-height:24px;
+  color:#000000;
+  width:19.544%;
+  text-align:right;
+  float:left;
+  display:inline;
+  margin-top: 8px;
+}
+.mimaque{
+  font-size:14px;
+line-height:24px;
+  color:#a09c9c;
+  width:163px;
+  float:left;
+  display:inline;
+  text-align:right;
+  margin-top: 8px;
+}
+.mima{
+  border:1px solid #000000;
+  width: 272px;
+  height:35px;
+  margin-left:14px;
+  padding:5px;
+  font-size:14px;
+  color:#000000;
+  line-height: 35px;
+}
+.mima1{
+  border:1px solid #000000;
+  width: 272px;
+  height:35px;
+  margin-left:14px;
+  padding:5px;
+  font-size:14px;
+  color:#a09c9c;
+}
+.quexiugai{
+  margin-left:90px;
+  margin-top:40px;
+  background-color:#ffde05;
+  font-size:15px;
+  color: #000000;
+  width:103px;
+  height:25px;
+  border:0px;;
+}
+.quexiugai:hover{
+text-decoration: underline;
+}
+.mimashuo{
+  color:#b5b5b5;
+  font-size:14px;
+  margin-left:160px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.back{
+  float:right;
+  margin-right:17px;
+  font-size:15px;
+  line-height:55px;
+  display:inline;
+}
+.fanhui{
+  padding-bottom:3px;
+  width:17px;
+  height:6px;
+}

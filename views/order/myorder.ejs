@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title><%= language.myOrder.title[local] %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel='stylesheet' href='/stylesheets/style1.css'/>
+    <link rel="stylesheet" href="/stylesheets/stylePerson.css"/>
+    <link rel="stylesheet" href="/stylesheets/styleOrder.css"/>
+    <link rel="stylesheet" href="/stylesheets/cart.css"/>
+</head>
+<body>
+<div class="div_div">
+    <div class="tianjia">
+        <form action="/address" id='address' method="post" onsubmit="return false;">
+            <input type="hidden" name="id" id="addressId" value="">
+
+            <div class="jiaxinxi">
+                <div class="xin"><%= language.myOrder.street[local] %><span class="xing">&nbsp;*&nbsp;</span>:</div>
+                <div class="xi"><input type="text" class="inin" name="street" id="street"></div>
+            </div>
+            <label for="street" class="error float"></label>
+
+            <div class="clear"></div>
+
+            <div class="jiaxinxi">
+                <div class="xin"><%= language.myOrder.receiver[local] %><span class="xing">&nbsp;*&nbsp;</span>：</div>
+                <div class="xi"><input type="text" class="inin" name="receiver" id="receiver"></div>
+            </div>
+            <label for="receiver" class="error float"></label>
+
+            <div class="clear"></div>
+
+            <div class="jiaxinxi">
+                <div class="xin"><%= language.myOrder.tel[local] %><span class="xing">&nbsp;*&nbsp;</span>：</div>
+                <div class="xi"><input type="text" class="inin" name="tel" id="tel"></div>
+            </div>
+            <label for="tel" class="error float"></label>
+
+            <div class="clear"></div>
+
+            <div class="jiaxinxi">
+                <div class="xin"><%= language.myOrder.postCode[local] %><span class="xing">&nbsp;*&nbsp;</span>：</div>
+                <div class="xi"><input type="text" class="inin" name="postcode" id="postcode"></div>
+            </div>
+            <label for="postcode" class="error float"></label>
+
+            <div class="clear"></div>
+
+            <div class="inin1">
+                <a class="xiao"><%= language.myOrder.cancel[local] %></a>
+                <a class="qu" onclick="createorupdateAddress()"><%= language.myOrder.determine[local] %></a>
+            </div>
+        </form>
+
+    </div>
+</div>
+<div id="contain">
+<% include ../header.ejs %>
+<div class="cart">
+<div class="returnPassword" style="margin-left: 4%">
+    <%= language.myOrder.order[local] %>
+</div>
+<div class="divsubmit">
+    <table style="width: 100%">
+        <tr>
+            <td class="div3 divreset2" style="text-align: center">
+                <%= language.myOrder.viewCart[local] %>
+            </td>
+            <td style="width: 34%">
+                <div style="width: 100%;height: 3px;background-color: #838383;"></div>
+            </td>
+            <td class="div3 divreset2" style="text-align: center">
+                <%= language.myOrder.paymentMethod[local] %>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="pay">
+<div class="querenzhifu">
+    <%= language.myOrder.confirmPayment[local] %>
+</div>
+<div class="dizhi">
+    <form id="addresslist">
+        <% user.addresses.forEach(function(address){ %>
+        <div style="margin: 5px 0;" id="<%= address._id %>">
+            <% if (String(address._id) == String(user.curAddress)){ %>
+            <input type="radio" class="xuanzhi" name="address" value="<%= address._id %>" checked="checked"
+                   onclick="setdefaultaddress('<%= address._id %>')">
+            <% } else { %>
+            <input type="radio" class="xuanzhi" name="address" value="<%= address._id %>"
+                   onclick="setdefaultaddress('<%= address._id %>')">
+            <% } %>
+            <span class="xuanzhi1"><%= address.street %> (<%= address.receiver %>) <%= address.tel %></span>
+            <% if (String(address._id) == String(user.curAddress)){ %>
+            <span class="mo"><%= language.myOrder.defaultAddress[local] %></span>
+            <% } %>
+            <a class="xiuzhi1"
+               onclick="updateaddress('<%= address._id %>', '<%= address.street %>', '<%= address.receiver %>', '<%= address.tel %>', '<%= address.postcode %>')"><%= language.myOrder.changeAddress[local] %></a>
+            <a class="xiuzhi" onclick="rmaddress('<%= address._id %>')"><%= language.myOrder.delAddress[local] %></a>
+
+            <div class="clear"></div>
+        </div>
+        <% }) %>
+    </form>
+    <script>
+        $(window).load(function () {
+            var div_height = $('#contain').height();
+            $('.div_div').height(div_height + 285);
+        });
+        function rmaddress(id) {
+            $.ajax({
+                url: "/rmaddress/" + id,
+                type: "GET",
+                success: function (res) {
+                    if (res.result === "success") {
+                        $("#" + id).remove();
+                        var num = $('input:radio[name="address"]:checked').length;
+                        if (num == 0) {
+                            $('button').attr("disabled", "disabled");
+                            $('button').css('background-color', 'rgb(249, 234, 137)');
+                        }
+                    } else {
+//                        console.log("something error!");
+                    }
+                }
+            });
+        }
+
+        function setdefaultaddress(id) {
+            $('button').removeAttr("disabled");
+            $('.continuesubmit').css('background-color', '#ffde05');
+            $.ajax({
+                url: "/setdefaultaddress/" + id,
+                type: "GET",
+                success: function (res) {
+                    if (res.result === "success") {
+                        $("span.mo").remove();
+                        $("#" + id + " span.xuanzhi1").append("<span class='mo'><%= language.myOrder.defaultAddress[local] %></span>");
+                        $("div.huozhi").html("<%= language.myOrder.street[local] %>: " + res.address.street + "<br><%= language.myOrder.receiver[local] %>: " + res.address.receiver + "<br><%= language.myOrder.tel[local] %>: " + res.address.tel);
+                    } else {
+//                        console.log("error!---------");
+                    }
+                }
+            });
+        }
+        ;
+
+        function updateaddress(id, street, receiver, tel, postcode) {
+            $('.div_div').css('display', 'block')
+            var top = ($(window).height() - $('.tianjia').height()) / 2;
+            var left = ($(window).width() - $('.tianjia').width()) / 2;
+            var scrollTop = $(document).scrollTop();
+            var scrollLeft = $(document).scrollLeft();
+            $('.tianjia').css({ position: 'absolute', 'top': top + scrollTop, left: left + scrollLeft }).show();
+
+            var form = $("#address")[0];
+            form.id.value = id;
+            form.street.value = street;
+            form.receiver.value = receiver;
+            form.tel.value = tel;
+            form.postcode.value = postcode;
+        }
+        ;
+    </script>
+    <a class="jiazhi"><%= language.myOrder.addAddress[local] %></a>
+
+    <script>
+        $('.jiazhi').click(function () {
+            $('.div_div').css('display', 'block');
+            var form = $("#address")[0];
+            form.id.value = "";
+            form.reset();
+            var top = ($(window).height() - $('.tianjia').height()) / 2;
+            var left = ($(window).width() - $('.tianjia').width()) / 2;
+            var scrollTop = $(document).scrollTop();
+            var scrollLeft = $(document).scrollLeft();
+            $('.tianjia').css({ position: 'absolute', 'top': top + scrollTop, left: left + scrollLeft }).show();
+        })
+        $('.xiao').click(function () {
+            $('.div_div').css('display', 'none')
+          $('label').html("");
+        })
+        function createorupdateAddress() {
+            if ($("form#address").valid() == true) {
+                var form = $("#address")[0];
+                var formdata = {id: form.id.value,
+                    street: form.street.value,
+                    receiver: form.receiver.value,
+                    tel: form.tel.value,
+                    postcode: form.postcode.value};
+                $.ajax({
+                    url: '/address',
+                    type: "POST",
+                    data: formdata,
+                    success: function (res) {
+                        if (res.result === "success") {
+//                            console.log("result:", res.fresh);
+                            if (res.fresh) {
+                                $("#" + res.address.id + " span.xuanzhi1").html(res.address.street + " (" + res.address.receiver + ") " + res.address.tel);
+                            } else {
+                                $("form#addresslist").append("<div style='margin:5px 0;' id='" + res.address.id + "'><input type='radio' class='xuanzhi' name='address' value='" + res.address.id + "' onclick=\"setdefaultaddress('" + res.address.id + "')\"><span class='xuanzhi1'>" + res.address.street + " (" + res.address.receiver + ") " + res.address.tel + "</span><a class='xiuzhi' onclick=\"rmaddress('" + res.address.id + "')\"><%= language.myOrder.delAddress[local] %></a><div class='clear'></div></div>");
+                            }
+                            form.id.value = "";
+                            form.reset();
+                            $('.div_div').css('display', 'none')
+                        } else {
+                            alert("failure");
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+</div>
+<div class="payable">
+    <%= language.myOrder.total[local] %>：￥<%= totalprice %> (<%=language.other.freight[local]%>: ￥<%= freight %>)
+</div>
+<div class="list1">
+    <% pds.forEach(function(pd){ %>
+    <div class="wap">
+        <a href="/product/<%= pd._id %>" class="gap">
+            <img src="<%= pd.images[pd.coverIndex] %>" width="104px" height="104px"/>
+        </a>
+
+        <div class="sap">
+            <div class="price">
+                <%= pd.name[local] %></br>
+                ￥ <%= pd.price %></br>
+                x <%= pd.buyQuantity %>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <% }) %>
+</div>
+<div class="takeoverGoods">
+    <%= language.myOrder.street[local] %>:
+</div>
+<div class="huozhi">
+    <% user.addresses.forEach(function(address){ %>
+    <% if(address._id == user.curAddress){ %>
+    <%= language.myOrder.street[local] %>：<%= address.street %></br>
+    <%= language.myOrder.receiver[local] %>：<%= address.receiver %></br>
+    <%= language.myOrder.tel[local] %>：<%= address.tel %>
+    <% } %>
+    <% }) %>
+</div>
+<div class="tijiao">
+    <% if (productId && buyQuantity) { %>
+    <button class="continuesubmit"
+            onclick="window.location.href='/submitorder?productId=<%= productId %>&quantity=<%= buyQuantity %>'"><%= language.myOrder.subOrder[local] %>
+    </button>
+    <% } else { %>
+    <button class="continuesubmit"
+            onclick="window.location.href='/submitorder'"><%= language.myOrder.subOrder[local] %></button>
+    <% } %>
+</div>
+<script>
+    $(function () {
+        var num = $('input:radio[name="address"]:checked').length;
+        if (num == 0) {
+            $('button').attr("disabled", "disabled");
+            $('button').css('background-color', 'rgb(249, 234, 137)');
+        }
+    })
+</script>
+</div>
+
+</div>
+</div>
+<% include ../footer.ejs %>
+</div>
+<script type="text/javascript" src="/javascripts/jquery.validate.min.js"></script>
+<% if(local == 'zh'){ %>
+<script>
+    $().ready(function () {
+        $("#address").validate({
+            rules: {
+                street: {
+                    required: true
+//          minlength:5
+                },
+                receiver: {
+                    required: true,
+                    minlength: 2
+                },
+                tel: {
+                    required: true,
+                    minlength: 11
+                },
+                postcode: {
+                    required: true,
+                    minlength: 6
+                }
+            },
+            messages: {
+                street: {
+                    required: "请输入收货地址"
+//          minlength:"最小长度是1"
+                },
+                receiver: {
+                    required: "请输入收货人",
+                    minlength: "请输入正确的收货人"
+                },
+                tel: {
+                    required: "请输入手机号码",
+                    minlength: "请输入正确的手机号码"
+                },
+                postcode: {
+                    required: "请输入邮政编码",
+                    minlength: "请输入正确的邮政编码"
+                }
+            }
+        })
+    })
+</script>
+<% }if(local == 'en'){ %>
+<script>
+    $().ready(function () {
+        $("#address").validate({
+            rules: {
+                street: {
+                    required: true
+//          minlength:5
+                },
+                receiver: {
+                    required: true,
+                    minlength: 2
+                },
+                tel: {
+                    required: true,
+                    minlength: 11
+                },
+                postcode: {
+                    required: true,
+                    minlength: 6
+                }
+            },
+            messages: {
+                street: {
+                    required: "Please enter a shipping address"
+                },
+                receiver: {
+                    required: "Please enter the consignee",
+                    minlength: "Please enter the correct consignee"
+
+                },
+                tel: {
+                    required: "Please enter the phone number",
+                    minlength: "Please enter a valid mobile number"
+                },
+                postcode: {
+                    required: "Please enter a zip code",
+                    minlength: "Please enter the correct zip code"
+                }
+            }
+        })
+    })
+</script>
+<% } %>
+
+</body>
+</html>

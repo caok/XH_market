@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title><%= language.footer.men[local] %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css'/>
+  <link rel='stylesheet' href='/stylesheets/style1.css'/>
+  <link rel="stylesheet" href="/stylesheets/stylePerson.css"/>
+  <link rel="stylesheet" href="/stylesheets/styleOrder.css"/>
+  <link rel="stylesheet" href="/stylesheets/cart.css"/>
+</head>
+<body>
+<div id="contain">
+  <% include ../header.ejs %>
+  <div>
+    <% include ../img.ejs %>
+    <div class="center2">
+      <div class="shi">
+        <ul class="ulabout">
+          <li class="liabout">
+            <div class="liabout1"><%= language.footer.methods[local] %></div>
+          </li>
+          <li class="liabout11">
+            <a href="/manguide" class="liabout2"><span class="float"><%= language.footer.men[local] %></span>
+              <div class="liEnter1">></div>
+            </a>
+          </li>
+          <li class="liabout111">
+            <a href="/womanguide" class="aabout"><span class="float"><%= language.footer.women[local] %></span>
+              <div class="liEnter1">></div>
+            </a>
+          </li>
+          <li class="liabout111">
+            <a href="/sizedesc" class="aabout"><span class="float"><%= language.footer.size[local] %></span>
+              <div class="liEnter1">></div>
+            </a>
+          </li>
+        </ul>
+        <div class="clear"></div>
+      </div>
+      <div class="divabout">
+        <div class="divabout1"><%= language.footer.men[local] %></div>
+        <div class="divabout2">
+          <%- manguide.content[local] %>
+        </div>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+</div>
+<% include ../footer.ejs %>
+</body>
+</html>

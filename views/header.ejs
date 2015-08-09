@@ -1,0 +1,104 @@
+<script type="text/javascript" src="/javascripts/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/javascripts/jquery.cookie.js"></script>
+<script type="text/javascript" src="/javascripts/main.js"></script>
+<!--<div class="divtop">-->
+<div class="topdiv" >
+    <div style="background-color:#2d2c2c;width: 100%">
+    <div class="top">
+        <div style="float: right;">
+            <div class=" zhongwen">
+                <span class="cur " id='ch' onclick="changeLang('zh')">中文</span> | <span id='en' onclick="changeLang('en')">ENGLISH</span>
+            </div>
+            <a class="cartCar" href="/mycart">
+                <div>
+                    <img src="/images/cart.png " class="aphone1">
+                </div>
+                <div class="circle"><%= cartnum %></div>
+                <div class="clear"></div>
+            </a>
+          <img src="/images/user.png" class="aphone float" style="margin-top: 12px">
+          <div class="zhanghu">
+                <% if (current_user) { %>
+                  <a class="atop liMarginleft" href="/orders"><%= current_user %></a>
+                  <span class="atop liMarginleft">/</span>
+                  <a class="atop liMarginleft" href="/logout"><%= language.nav.logout[local] %></a>
+                <% } else { %>
+                  <a class="atop " href="/signup"><%= language.nav.register[local] %></a>
+                  <span class="atop">|</span>
+                  <a class="atop " href="/login"><%= language.nav.login[local] %></a>
+                <% } %>
+            </div>
+        </div>
+        <div class="float">
+            <img src="/images/phone.png" class="aphone" align="center"><span  class="atop liMarginleft"><%= basicinfo.tel %></span>
+        </div>
+    </div>
+    </div>
+
+    <div class="topCenter">
+        <a href="/"><img src="/images/center.png" class="imgTopcenter"></a>
+    </div>
+
+    <div style="background-color:#1c1c1c;width: 100%">
+    <div class="topFoot">
+        <div class="search">
+            <div class="searchLO" >
+                <img src="/images/search.png" class="lo">
+            </div>
+            <div>
+              <form action="/search" method='post'>
+                <input type="text" name="search" class="searchBor">
+                <input type="hidden" name="lang" value="<%= local %>">
+              </form>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <div>
+            <ul class="header_list">
+                <li class="productLIst">
+                    <div style="width: 110px;margin-left: auto;margin-right: auto">
+                        <div class="float imgTop1"></div>
+                        <a class="float">
+                            <div class="float"><span><%= language.nav.product[local] %></span></div>
+                            <div class="pic_arrow float"></div>
+                        </a>
+                    </div>
+                    <div class="clear"></div>
+                    <ul class="header_list_down">
+                        <% cates.forEach(function(category){ %>
+                        <li>
+                            <a href="/category/<%= category._id %>">
+                                    <% if(local == "zh"){ %>
+                                    <%= category.name %>
+                                    <% }else{ %>
+                                    <%= category.enName %>
+                                    <% } %>
+                            </a>
+                        </li>
+                        <% }) %>
+                    </ul>
+                </li>
+                <li class="TVLIst">
+                    <div style="width: 99px;margin-left: auto;margin-right: auto">
+                        <div class="float imgTop2"></div>
+                        <a class="float">
+                            <div class="float"><span><%= language.nav.video[local] %></span></div>
+                            <div class="pic_arrow float"></div>
+                        </a>
+                    </div>
+                    <div class="clear"></div>
+                    <ul class="header_list_down">
+                        <% vcates.forEach(function(vcate){ %>
+                        <li>
+                            <a href="/vcategory/<%= vcate._id %>"><span><%= vcate.name[local] %></span></a>
+                        </li>
+                        <% }) %>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+</div>

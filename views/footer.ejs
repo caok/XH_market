@@ -1,0 +1,81 @@
+<div class="footer">
+  <div class="foot_div">
+    <!--logo-->
+    <div id="centerbottom">
+      <div class="centerFooter">
+        <div>
+          <a href="/"><img src="/images/center.png" class="imgCopr"/></a>
+        </div>
+        <div class="copr1">
+          <%= language.footer.beianhao[local] %> 2013-2014
+        </div>
+        <div class="copr">苏ICP备</div>
+      </div>
+    </div>
+    <!--服务-->
+    <div class="divcenter4">
+      <div class="centerFooter">
+        <div class="divcenter3"><%= language.footer.service[local] %></div>
+        <div class=" acenter1">
+          <a class="acenter" href="/contact"><%= language.footer.contactus[local] %></a>
+        </div>
+        <div>
+          <a class="acenter" href="/delivery"><%= language.footer.shipping[local] %></a>
+        </div>
+        <div>
+          <a class="acenter" href="/warranty"><%= language.footer.info[local] %></a>
+        </div>
+        <div>
+          <a class="acenter" href="/refund"><%= language.footer.returns[local] %></a>
+        </div>
+      </div>
+    </div>
+    <!--企业-->
+    <div class="divcenter4">
+      <div class="centerFooter">
+        <div class="divcenter3">
+          <%= language.footer.company[local] %>
+        </div>
+        <div class="acenter1">
+          <a class="acenter" href="/about"><%= language.footer.aboutus[local] %></a>
+        </div>
+        <div class="acenter">
+          <a class="acenter" href="/joinus"><%= language.footer.joinus[local] %></a>
+        </div>
+        <div>
+          <a class="acenter" href="/partner"><%= language.footer.partners[local] %></a>
+        </div>
+        <div style="margin-top:6px;position: relative">
+          <a href="http://weibo.com/fittergear" target="_blank"><img src="/images/weibo.png" class="weixin" onmouseover="this.src='/images/weibo2.png'" onmouseout="this.src='/images/weibo.png'"></a>
+          <img src="/images/weixin.png" class="client" onmouseover="this.src='/images/weixin2.png'" onmouseout="this.src='/images/weixin.png'" onclick="showweixin()">
+        </div>
+        <div class="erweima">
+          <div><img src="/images/weixin2.png"class="img1"><span>微信</span>
+            <span style="float: right;margin-right: 15px;margin-top: 10px;cursor: pointer" onclick="cha()">X</span></div>
+          <img src="/images/erweima.png" class="img2">
+        </div>
+      </div>
+    </div>
+    <script>
+      function showweixin(){
+        $('.erweima').css('display','block');
+      }
+      function cha(){
+        $('.erweima').css('display','none');
+      }
+    </script>
+    <!--选购指引-->
+    <div class="delivery">
+      <div class="divcenter3"><%= language.footer.methods[local] %></div>
+      <div class=" acenter1">
+        <a class="acenter" href="/manguide"><%= language.footer.men[local] %></a>
+      </div>
+      <div class=" acenter">
+        <a class="acenter" href="/womanguide"><%= language.footer.women[local] %></a>
+      </div>
+      <div class=" acenter">
+        <a class="acenter" href="/sizedesc"><%= language.footer.size[local] %></a>
+      </div>
+    </div>
+  </div>
+</div>

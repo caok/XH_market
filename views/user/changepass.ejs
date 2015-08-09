@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+  <meta charset="UTF-8">
+  <title><%= language.order.personalCenter[local] %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css'/>
+  <link rel='stylesheet' href='/stylesheets/style1.css'/>
+  <link rel="stylesheet" href="/stylesheets/stylePerson.css"/>
+  <link rel="stylesheet" href="/stylesheets/styleOrder.css"/>
+  <link rel="stylesheet" href="/stylesheets/cart.css"/>
+</head>
+
+<body>
+<div id="contain">
+  <% include ../header.ejs %>
+  <div class="evaluate1">
+    <ul class="ulPerson">
+      <li class="orderNav1">
+        <div style="margin-bottom: 10px;height: 45px;width: 100%;">
+          <img src="/images/person.jpg" class="person_pic"/><span class="tdPerson"><%= current_user %></span>
+        </div>
+      </li>
+
+      <li class="orderNav11">
+        <a href="/orders" class="liPerson1">
+          <%= language.order.allOrders[local] %>
+          <div class="enterOrder">></div>
+        </a>
+      </li>
+      <li class="orderNav11">
+        <a class="liPerson1" href="/payment">
+          <%= language.order.pendingPayment[local] %>
+          <div class="enterOrder">></div>
+        </a>
+      </li>
+      <li class="orderNav11">
+        <a class="liPerson1 " href="/receiving">
+          <%= language.order.uponReceipt[local] %>
+          <div class="enterOrder">></div>
+        </a>
+      </li>
+      <li class="orderNav11">
+        <a class="liPerson1" href="/evaluation">
+          <%= language.order.toBeEvaluated[local] %>
+          <div class="enterOrder">></div>
+        </a>
+      </li>
+      <li class="orderNav11">
+        <a class="liPerson1" href="/returns">
+          <%= language.order.returnGoods[local] %>
+          <div class="enterOrder">></div>
+        </a>
+      </li>
+      <li class="orderNav111">
+        <a class="liPerson11" href="/user">
+          <%= language.order.personalCenter[local] %>
+          <div class="enterOrder">></div>
+        </a>
+      </li>
+    </ul>
+    <div class="dingdan">
+      <div class="personMassege">
+        <div class="personMassege2">
+          <a href="/user"><span class="back"><img src="/images/back.png" class="fanhui">&nbsp;<%=language.order.back[local]%></span></a>
+          <div class="personMassege1"> <%=language.order.changePassword[local]%></div>
+        </div>
+        <div class="xiugai">
+          <% if (locals.error) { %>
+          <div class="error_font" style="text-align: left;margin-left: 21.3%"><%= locals.error %></div>
+          <% } %>
+          <form action='/updateInfo' id="updateInfo" method='post'>
+            <input type="hidden" name="name" value="<%= current_user %>">
+            <div>
+              <label class="mimaming"><%=language.order.curPass[local]%>：<span style="color:#ff0101;">*</span></label>
+              <input type="password" class="mima" name="curpass">
+            </div>
+            <div class="mimashuo">
+              <%=language.order.tiShi[local]%>
+            </div>
+            <div>
+              <span class="mimaming"><%=language.order.pass[local]%>：<span style="color:#ff0101;">*</span></span>
+              <input type="password" class="mima" name="pass">
+            </div>
+            <div style="margin-top:24px;">
+              <label class="mimaming"><%=language.order.rePass[local]%>：<span style="color:#ff0101;">*</span></label>
+              <input type="password" class="mima" name="repass">
+            </div>
+            <input type="submit" class="quexiugai" id="update" value="<%=language.order.sub[local]%>">
+          </form>
+        </div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+<% include ../footer.ejs %>
+</body>
+
+</html>

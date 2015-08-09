@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>FITTERGEAR</title>
+    <script type="text/javascript" src="/javascripts/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/login.css">
+    <script>
+      $(function() {
+        $("button#signin").click(function() { 
+          var form = $("form#loginForm")[0];
+          var formdata = {name: form.name.value,
+                          password: form.password.value};
+          $.ajax({
+            url: '/admin/login',
+            type: "POST",
+            data: formdata,
+            success: function (res) {
+              if (res[0]) {
+                location.href = '/admin';
+              } else {
+                $("#error").html(res[1]);
+                $("#loginForm")[0].name.value= "";
+                $("#loginForm")[0].password.value= "";
+                if (!$("div#error").is(':visible')){
+                  $("div#error").show();
+                };
+                $("input#name").focus();
+              };
+            },
+            failure: function (res) {
+              $("#error").html("错误: 未知错误!!");
+              if (!$("div#error").is(':visible')){
+                $("div#error").show();
+              };
+            }
+          });
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <div id="login">
+      <div class="header">
+        <span>XH-SPORTS</span>
+      </div>
+      <div class="inner">
+        <form name="login" method="post" class="form-horizontal" id="loginForm" onsubmit="return false;">
+          <div class="control-group">
+            <label class="control-label" for="name">用户名: </label>
+            <div class="control">
+              <input class="form-control" type="text" name="name" id="name">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="password">密 码: </label>
+            <div class="control">
+              <input class="form-control" type="password" name="password" id="password">
+            </div>
+          </div>
+          <div id="alert">
+            <div id="error" class="alert alert-danger">
+              错误: 未知的错误!!
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="control">
+              <button class="btn btn-primary" id="signin">登陆</button>
+            </div>
+          </div>
+        </form>
+      </div>
+     </div>
+  </body>
+</html>

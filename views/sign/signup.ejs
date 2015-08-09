@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%=language.sign.title[local]%></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+      <link rel='stylesheet' href='/stylesheets/style1.css' />
+  </head>
+  <body>
+  <% if (locals.success) { %>
+  <div class="div_div" style="display: inline">
+  <div class="success_div">
+    <div class="success_font"><img src="/images/gou.png"><span><%=language.login.successBefore[local]%><%=success%><%=language.login.successAfter[local]%></span></div>
+    <div class="success_font1">
+      <div style="margin-top: 48px;"><%=language.login.error2[local]%></div>
+      <div class="success_font1_div2"><%=language.login.error3before[local]%><span style="color: #000000"><%=success%></span><%=language.login.error3after[local]%></div>
+    </div>
+  </div>
+  </div>
+  <% } %>
+
+  <div id="contain">
+    <% include ../header.ejs %>
+
+    <form action='/signup' method='post'>
+    <div class="divcenter">
+        <div>
+            <ul class="ulcenter">
+                <li class=" lienter" >
+                    <a href="login" class="accountRegistration"> <%=language.login.login[local]%></a>
+                </li>
+                <li class="lienter1" >
+                    <div class="accountlogin"><%=language.login.register[local]%> </div>
+                </li>
+            </ul>
+            <div class="clear"> </div>
+        </div>
+        <div style="width:100%;">
+
+           <div class="divregister">
+             <% if (locals.error) { %>
+             <div class="error_font"><%= locals.error %></div>
+             <% } %>
+             <%if(local=="zh"){%>
+                <div class="divInputregister" >
+                  <div class="inputregister">
+                   <%=language.sign.nickname[local]%><span class="xuehua">&nbsp;*&nbsp;</span>:
+                </div>
+                  <div class="zhuce">
+                   <% if (locals.name) { %>
+                   <input name='name' type='text' value='<%= name %>' class="inputregister1"   />
+                   <% } else { %>
+                   <input name='name' type='text' class="inputregister1" />
+                   <% } %>
+                 </div>
+                  <div style="clear:both;"> </div>
+                </div>
+                <div class="divInputregister">
+                      <div class="inputregister"><%=language.sign.email[local]%><span class="xuehua">&nbsp;*&nbsp;</span>:
+
+                      </div>
+                      <div class="zhuce1">
+                          <% if (locals.email) { %>
+                          <input  type="text" name="email" value='<%= email %>' class="inputregister1"/>
+                          <% } else { %>
+                          <input name='email' type='text' class="inputregister1"/>
+                          <% } %>
+                      </div>
+                      <div style="clear:both;">
+                      </div>
+                    </div>
+                <div class="divInputregister">
+                        <div class="inputregister"><%=language.sign.password[local]%><span class="xuehua">&nbsp;*&nbsp;</span>:
+
+                        </div>
+                        <div class="zhuce">
+                            <input  type="password" name="password" class="inputregister1"  />
+                        </div>
+                        <div style="clear:both;">
+                        </div>
+                    </div>
+                <div class="divInputregister">
+                        <div class="inputregister">
+                        <%=language.sign.password2[local]%><span class="xuehua">&nbsp;*&nbsp;</span>:
+
+                        </div>
+                        <div class="zhuce1">
+                            <input  type="password" name="password_confirmation" class="inputregister1"/>
+                        </div>
+                        <div style="clear:both;"></div>
+                    </div>
+             <%}if(local=='en'){%>
+             <div class="divInputregister" >
+               <div class="inputregister">
+                 <%=language.sign.nickname[local]%><span class="xuehua">&nbsp;*&nbsp;</span>:
+               </div>
+               <div class="zhuceE">
+                 <% if (locals.name) { %>
+                 <input name='name' type='text' value='<%= name %>' class="inputregister1"   />
+                 <% } else { %>
+                 <input name='name' type='text' class="inputregister1" />
+                 <% } %>
+               </div>
+               <div style="clear:both;"> </div>
+             </div>
+             <div class="divInputregister">
+               <div class="inputregister"><%=language.sign.email[local]%><span class="xuehua">&nbsp;*&nbsp;</span>:
+
+               </div>
+               <div class="zhuceE">
+                 <% if (locals.email) { %>
+                 <input  type="text" name="email" value='<%= email %>' class="inputregister1"/>
+                 <% } else { %>
+                 <input name='email' type='text' class="inputregister1"/>
+                 <% } %>
+               </div>
+               <div style="clear:both;">
+               </div>
+             </div>
+             <div class="divInputregister">
+               <div class="inputregister"><%=language.sign.password[local]%><span class="xuehua">&nbsp;*&nbsp;</span>:
+
+               </div>
+               <div class="zhuceP">
+                 <input  type="password" name="password" class="inputregister1"  />
+               </div>
+               <div style="clear:both;">
+               </div>
+             </div>
+             <div class="divInputregister">
+               <div class="inputregister">
+                 <%=language.sign.password2[local]%><span class="xuehua">&nbsp;*&nbsp;</span>:
+
+               </div>
+               <div class="zhuceC">
+                 <input  type="password" name="password_confirmation" class="inputregister1"/>
+               </div>
+               <div style="clear:both;"></div>
+             </div>
+
+             <%}%>
+              <div class="div1"><%=language.sign.before[local]%><span class="xuehua">“*”</span><%=language.sign.after[local]%></div>
+
+             <div style="margin-top:27px;">
+                   <table>
+                        <tr>
+                            <td>
+                                <input id="checkbox" type="checkbox" name="Repass" value="answer" class="divregister1 float" onclick="check()"/>
+                                <div class="float bregister"><%=language.sign.confirmationMessage[local]%></div>
+                            </td>
+                        </tr>
+                    </table>
+                   <div class="clear"></div>
+                </div>
+              <script>
+                    function btnAction(){
+                        alert(document.getElementById("sub").disabled);
+                    }
+                    function check(){
+                        //判断checkbox有没有被选中
+                        if(document.getElementById("checkbox").checked==true)
+                        {
+                            document.getElementById("sub").disabled="";//给BUTTON按钮的disabled属性赋值
+                            document.getElementById("sub").className="buttonRegister1"//给BUTTON按钮的class属性赋值
+                        }else{
+                            document.getElementById("sub").disabled="disabled";
+                            document.getElementById("sub").className="buttonRegister"//给BUTTON按钮的class属性赋值
+                        }
+                    }
+                </script>
+
+             <div style="margin-top:22px;">
+                    <input type="submit" class='buttonRegister'  id="sub" disabled="disabled" value="<%=language.sign.success[local]%>">
+              </div>
+            </div>
+
+
+          <div  class="marginRegister">
+                <div class="font20"><%=language.sign.textTitle[local]%></div>
+                <ul class="ulRegister">
+                    <li type="disc">
+                        <%=language.sign.text1[local]%>
+                    </li>
+                    <li type="disc">
+                        <%=language.sign.text2[local]%>
+                    </li>
+                    <li type="disc">
+                        <%=language.sign.text3[local]%>
+                    </li>
+                    <li type="disc">
+                        <%=language.sign.text4[local]%>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    </form>
+    <script>
+      var top = ($(window).height() - $('.success_div').height()) / 2;
+      var left = ($(window).width() - $('.success_div').width()) / 2;
+      var scrollTop = $(document).scrollTop();
+      var scrollLeft = $(document).scrollLeft();
+      $('.success_div').css({ position: 'absolute', 'top': top + scrollTop, left: left + scrollLeft }).show();
+
+      $(window).load(function () {
+        var div_height = $('#contain').height();
+        $('.div_div').height(div_height + 285);
+      });
+      $('body').click(function(){
+        $('.div_div').css("display","none")
+      })
+    </script>
+  </div>
+    <% include ../footer.ejs%>
+ </body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>
+    <%= language.order.personalCenter[local] %>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css'/>
+  <link rel='stylesheet' href='/stylesheets/style1.css'/>
+  <link rel="stylesheet" href="/stylesheets/stylePerson.css"/>
+  <link rel="stylesheet" href="/stylesheets/styleOrder.css"/>
+  <link rel="stylesheet" href="/stylesheets/cart.css"/>
+</head>
+
+<body>
+<div id="contain">
+  <% include ../header.ejs %>
+  <div class="evaluate1">
+    <ul class="ulPerson">
+      <li class="orderNav1">
+        <div style="margin-bottom: 10px;height: 45px;width: 100%;">
+          <img src="/images/person.jpg" class="person_pic"/><span class="tdPerson"><%= current_user %></span>
+        </div>
+      </li>
+
+      <li class="orderNav11">
+        <a href="/orders" class="liPerson1">
+          <%= language.order.allOrders[local] %>
+          <div class="enterOrder">></div>
+        </a>
+      </li>
+      <li class="orderNav11">
+        <a class="liPerson1" href="/payment">
+          <%= language.order.pendingPayment[local] %>
+          <div class="enterOrder">></div>
+        </a>
+      </li>
+      <li class="orderNav11">
+        <a class="liPerson1" href="/receiving">
+          <%= language.order.uponReceipt[local] %>
+          <div class="enterOrder">></div>
+        </a>
+      </li>
+      <li class="orderNav11">
+        <a class="liPerson1" href="/evaluation">
+          <%= language.order.toBeEvaluated[local] %>
+          <div class="enterOrder">></div>
+        </a>
+      </li>
+      <li class="orderNav111">
+        <a class="liPerson11" href="/returns">
+          <%= language.order.returnGoods[local] %>
+          <div class="enterOrder">></div>
+        </a>
+      </li>
+      <li class="orderNav11">
+        <a class="liPerson1" href="/user">
+          <%= language.order.personalCenter[local] %>
+          <div class="enterOrder">></div>
+        </a>
+      </li>
+    </ul>
+    <div style="width: 70%;float:left;">
+      <div class="returnGoods">
+        <div>
+          <div class="personMassege2">
+            <div style="float: right;display:block; width: 65px">
+              <a class="dealMessage height" style="width: 100%" href="/receiving">
+                <img src="/images/back.png" class="fanhui">&nbsp;<%= language.order.back[local] %>
+              </a>
+            </div>
+            <span class="personMassege1"><%= language.order.totalPrice[local] %>：￥<%= order.pay %> (<%=language.other.freight[local]%>: ￥<%= order.freight || 0 %>)</span>
+          </div>
+        </div>
+        <div class="list111">
+          <% order.products.forEach(function(pd){ %>
+          <div class="wap">
+            <a href="/product/<%= pd.productId %>" class="gap"><img src="<%= pd.coverUrl %>" width="104px"
+                                                                    height="104px"></a>
+
+            <div class="sap">
+              <div class="price">
+                &nbsp;<%= pd.name[local] %></br>￥<%= pd.price %></br>&nbsp;x<%= pd.quantity %></br>
+              </div>
+            </div>
+            <div class="clear"></div>
+          </div>
+          <% }) %>
+        </div>
+        <div class="tiShi">
+          <span class="float"><%= language.returnGoods.replacement[local] %>：</span>
+
+          <div class="float"><%= language.returnGoods.replacementText[local] %>
+            <br/><%= language.returnGoods.replacementText2[local] %></div>
+          <div class="clear"></div>
+        </div>
+        <div>
+          <div class="cancelOrder_font"
+               style="padding-left: 18px;margin-top: 30px"><%= language.returnGoods.returnGoods[local] %></div>
+          <div class="cancelOrder_font2"
+               style="padding-left: 18px"><%= language.returnGoods.returnGoods2[local] %></div>
+            <form id='returnReason' action="/returns/<%= order._id %>" method="POST">
+              <div class="cancelOrder_div" style="margin-left: 18px">
+                <div><input type="radio" name="returnReason" class="rd"
+                            value="买错了"><%= language.returnGoods.yuanYin1[local] %></div>
+                <div><input type="radio" name="returnReason" class="rd"
+                            value="发错货"><%= language.returnGoods.yuanYin2[local] %></div>
+                <div><input type="radio" name="returnReason" class="rd"
+                            value="产品有损坏"><%= language.returnGoods.yuanYin3[local] %></div>
+                <div><input type="radio" name="returnReason" class="rd"
+                            value="其他原因"><%= language.returnGoods.yuanYin4[local] %></div>
+                <div><input type="radio" name="returnReason" class="rd"
+                            value="想换货"><%= language.returnGoods.yuanYin5[local] %></div>
+              </div>
+              <a class="quXiao" style="margin-left: 18px" href="/orders"><%= language.myCart.no[local] %></a>
+              <button class="queDing"><%= language.myCart.yes[local] %></button>
+            </form>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% include ../footer.ejs %>
+</body>
+
+</html>

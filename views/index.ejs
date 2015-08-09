@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>FITTERGEAR</title>
+  <link rel='stylesheet' href='/stylesheets/style.css'/>
+  <link rel='stylesheet' href='/stylesheets/style1.css'/>
+  <link rel="stylesheet" href="/stylesheets/stylePerson.css"/>
+  <link rel="stylesheet" href="/stylesheets/styleOrder.css"/>
+  <link rel="stylesheet" href="/stylesheets/cart.css"/>
+</head>
+<body>
+<div id="contain">
+  <% include ./header.ejs %>
+  <div class="homeImg">
+    <img src="<%= basicinfo.indexImg %>">
+  </div>
+  <div class="pp">
+    <div class="pin">
+      <div class="more">
+        <a href="/category" class="yuedu"><%= language.index.more[local] %>&nbsp;&nbsp;<img src="images/more.png"
+                                                                                            width="16" height="6"></a>
+      </div>
+      <div class="chan">
+        <%= language.index.products[local] %>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <% var categoryIdx = 0 %>
+    <% categories.forEach(function(category){ %>
+    <% if (categoryIdx % 3 == 0){ %>
+    <div style="min-width: 800px">
+      <% } %>
+      <% if (categoryIdx % 3 == 2){ %>
+      <div class="chanb1">
+        <% } else { %>
+        <div class="chanb">
+          <% } %>
+          <a href="/category/<%= category._id %>">
+            <img src="<%= category.imgUrl %>" class="fenlei">
+            <a class="power">
+              <% if(local == "zh"){ %>
+              <%= category.name %>
+              <% }else{ %>
+              <%= category.enName %>
+              <% } %>
+            </a>
+          </a>
+        </div>
+        <% if (categoryIdx % 3 == 2){ %>
+        <div class="clear"></div>
+      </div>
+      <% } %>
+      <% categoryIdx += 1 %>
+      <% }) %>
+      <div class="clear"></div>
+
+      <div class="tuijian">
+        <div class="tui">
+          <div class="more">
+            <a href="/category" class="yuedu"><%= language.index.more[local] %>&nbsp;&nbsp;<img src="images/more.png"
+                                                                                                width="16"
+                                                                                                height="6"></a>
+          </div>
+          <div class="chan">
+            <%= language.index.productsTui[local] %>
+          </div>
+          <div class="clear"></div>
+        </div>
+
+        <% mostCates.forEach(function(cate){ %>
+        <div class="jian" id="<%= cate.id %>">
+          <div class="product_div">
+            <div class="chanpin">
+              <div style="margin-left: 11%;<%if(local=='en'){%> margin-top: 25%<%}else{%> margin-top: 30%<%}%>">
+                <% if(local == "zh"){ %>
+                <%= cate.name %>
+                <% }else{ %>
+                <%= cate.enName %>
+                <% } %>
+              </div>
+              <div class="hengxian"></div>
+              <div class="qian" <%if(local=='en'){%> style="margin-top: 20%" <%}%>>
+                <div class="qianjin disabled" id="houtui" onclick="houtui('<%= cate.id %>')"><</div>
+                <div class="qianjin" id="qianjin" onclick="qianjin('<%= cate.id %>',<%= cate.pds.length %>)">></div>
+                <div class="clear"></div>
+              </div>
+            </div>
+            <div class="product_introduce" id="product_introduce">
+              <div class="pro_introduce">
+                  <% cate.pds.forEach(function(pd){ %>
+                  <div class="chanpintu">
+                    <a href="/product/<%= pd._id %>">
+                      <img src="<%= pd.images[pd.coverIndex] %>">
+                      <div><%= pd.name[local] %></div>
+                    </a>
+                  </div>
+                  <% }) %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+      <script>
+        function qianjin(id, length) {
+//          alert($('#' + id + ' .pro_introduce').width());
+          var pro_width = $('.chanpintu').width() * length + 1;
+          $('#' + id + ' .pro_introduce').width(pro_width);
+//          alert($('#' + id + ' .pro_introduce').width());
+//          alert($('#' + id + ' .product_introduce').width());
+//          alert($('#' + id + ' .product_introduce').height());
+          if (length <= 4) {
+            $('#' + id + ' #qianjin').addClass('disabled');
+          } else {
+            var left = parseInt($('#' + id + ' .pro_introduce').css('left'));
+            var pro_width = $('#' + id + ' .pro_introduce').width();
+            var chanpintu_width = $('#' + id + ' .chanpintu').width();
+            var mover_width = pro_width - chanpintu_width * 4;
+            if (left <= 0 && left > -mover_width) {
+              $('#' + id + ' .pro_introduce').css('left', left - chanpintu_width - 1);
+            }
+
+          }
+        }
+        function houtui(id) {
+          var left = parseInt($('#' + id + ' .pro_introduce').css('left'));
+          var pro_width = $('#' + id + ' .pro_introduce').width();
+          var chanpintu_width = $('#' + id + ' .chanpintu').width();
+          var mover_width = pro_width - chanpintu_width * 4;
+          if (parseInt($('#' + id + ' .pro_introduce').css('left')) < 0) {
+            $('#' + id + ' .pro_introduce').css('left', left + chanpintu_width + 1);
+          }
+          if (parseInt($('#' + id + ' .pro_introduce').css('left')) >= 0) {
+            $('#' + id + ' .pro_introduce').css('left', 0);
+          }
+        }
+        $(window).load(function () {
+          var chanb_height = $('.fenlei').width() * 0.574;
+          $('.fenlei').height(chanb_height);
+          $('.chanb').height(chanb_height);
+          $('.chanb1').height(chanb_height);
+          var jiantou_width = $('#houtui').width();
+          $('#houtui').height(jiantou_width);
+          $('#qianjin').height(jiantou_width);
+          $('#houtui').css('line-height', jiantou_width + 'px');
+          $('#qianjin').css('line-height', jiantou_width + 'px');
+          var chanpintu_width = $('.tuijian').width() * 0.85 * 0.245;
+          $('.chanpintu').width(chanpintu_width);
+          var pic_width = $('.chanpintu img').width();
+          $('.product_div').height(pic_width);
+          $('.chanpintu img').height(pic_width);
+          $('#pro_introduce a').height(pic_width);
+        });
+        $(window).resize(function () {
+          var chanb_height = $('.fenlei').width() * 0.574;
+          $('.fenlei').height(chanb_height);
+          $('.chanb').height(chanb_height);
+          $('.chanb1').height(chanb_height);
+          var jiantou_width = $('#houtui').width();
+          $('#houtui').height(jiantou_width);
+          $('#qianjin').height(jiantou_width);
+          $('#houtui').css('line-height', jiantou_width + 'px');
+          $('#qianjin').css('line-height', jiantou_width + 'px');
+//          var pro_width = $('.chanpintu').width()*7;
+//          $('.pro_introduce').width(pro_width);
+          var chanpintu_width = $('.tuijian').width() * 0.85 * 0.245;
+          $('.chanpintu').width(chanpintu_width);
+          var pic_width = $('.chanpintu img').width();
+          $('.product_div').height(pic_width);
+          $('.chanpintu img').height(pic_width);
+          $('#pro_introduce a').height(pic_width);
+        });
+      </script>
+    </div>
+  </div>
+</div>
+<% include ./footer.ejs %>
+
+</body>
+</html>

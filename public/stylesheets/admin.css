@@ -1,0 +1,131 @@
+#content {                     
+  padding-top: 70px;           
+  font-family:'calibri','Microsoft Yahei','宋体';
+  padding-bottom: 60px;        
+}
+
+img.big {
+  max-width: 100%;             
+}
+
+img.small {
+  max-width: 150px;            
+}
+
+img.middle {                   
+  max-width: 550px;            
+}
+
+#submitDiv{
+  position: fixed;
+  bottom: 0;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-left: -15px;
+  padding-left: 18%;
+  background: rgba(0,0,0,0.8);
+  border-radius: 6px 6px 0 0;
+  z-index: 1000;
+}
+
+#myModal .modal-dialog{
+  margin-top: 15%;
+  width: 400px;
+}
+
+.group {
+  padding: 10px; 
+  margin-bottom: 10px;         
+  border:2px solid #e9e9e9;    
+  border-radius: 3px;          
+}
+
+.header {
+  height: 50px;
+}
+
+.pd-group {
+  padding: 20px 20px 0px 20px; 
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border:2px solid #e9e9e9;    
+  border-radius: 3px;          
+}
+
+.form-group#del {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+td.action a {
+  margin-right: 10px;
+}
+
+ul.imglist {
+  text-align: left;
+  list-style:none;
+}
+
+ul.imglist li {
+  width: 110px;
+  height:110px;
+  padding: 0;
+  margin: 10px;
+  float: left;
+}
+
+li button.close {
+  height: 20px;
+}
+
+.theimg{
+  margin-top: 0px;
+  width: 100px;
+  height: 100px;
+}
+
+span#mark {
+  cursor: pointer;
+  color: gray;
+}
+
+span#mark:hover {              
+  color: black;                
+}
+
+.fileinput-button {
+  position: relative;
+  overflow: hidden;
+}
+.fileinput-button input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  opacity: 0;
+  -ms-filter: 'alpha(opacity=0)';
+  font-size: 200px;
+  direction: ltr;
+  cursor: pointer;
+}
+
+/* Fixes for IE < 8 */
+@media screen\9 {
+  .fileinput-button input {
+    filter: alpha(opacity=0);
+    font-size: 100%;
+    height: 100%;
+  }
+}
+
+ul.nav.nav-tabs li a {
+  min-width: 32px;
+  min-height: 42px;
+}
+
+.help-block {
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  color: #737373;
+}

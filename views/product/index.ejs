@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title><%= language.products.productList[local] %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css'/>
+  <link rel='stylesheet' href='/stylesheets/style1.css'/>
+  <link rel="stylesheet" href="/stylesheets/stylePerson.css"/>
+  <link rel="stylesheet" href="/stylesheets/styleOrder.css"/>
+  <link rel="stylesheet" href="/stylesheets/cart.css"/>
+</head>
+<body>
+<div id="contain">
+  <% include ../header.ejs %>
+  <div>
+    <% include ../img.ejs %>
+    <div>
+      <div class="productSort">
+        <div class="sort">
+
+          <div class="allProduct1">
+            <div>
+              <table>
+                <tr>
+                  <td class="font20 allProduct2">
+                    <a class="marginRight" href="/category" id="a1"><%= language.products.allProducts[local] %></a>
+                  </td>
+                  <td>
+                    <div class="productVertical1 marginRight"></div>
+                  </td>
+                  <td class="font2094">
+                     <span class="marginRight1">
+                       <% if (local == "zh"){ %>
+                       <%= category.name %>
+                       <% } else { %>
+                       <%= category.enName %>
+                       <% } %>
+                     </span>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <div>
+            <!--列表-->
+           <div class="float" style="width: 24.2%">
+              <ul class="ulproduct">
+                <li class="liproduct1">
+                  <a class="liabout1" href="/category" style="display: block"><%= language.products.allProducts[local] %></a>
+                </li>
+                <% categories.forEach(function(cate){ %>
+                <li class="liproduct2" >
+
+                  <% if(cate.name == category.name){ %>
+                  <a href="/category/<%= cate._id %>" class="liproduct">
+                    <span class="enterOrder">></span>
+                    <% } else { %>
+                    <a href="/category/<%= cate._id %>" class="aproduct">
+                      <span class="enterOrder">></span>
+                      <% } %>
+                      <div style="margin-left: 20px">
+                      <% if(local == "zh"){ %>
+                      <%= cate.name %>
+                      <% }else{ %>
+                      <%= cate.enName %>
+                      <% } %>
+                      </div>
+                    </a>
+                </li>
+                <% }) %>
+              </ul>
+            </div>
+            <!--图片区-->
+            <div style="float: left;margin-left: 10%;width: 64%;height: 100%">
+              <% products.forEach(function(pd){ %>
+              <div class="productPrice" id="pro_pic">
+                <a href="/product/<%= pd._id %>">
+                  <img src="<%= pd.images[pd.coverIndex] %>">
+                  <img src="/images/hengxian.jpg" style="height: 4px">
+
+                  <div class="productPrice1">
+                    <div class="fontPrice"><%= pd.name[local] %></div>
+                    <div class="fontPrice1">￥<%= pd.price %></div>
+                  </div>
+                </a>
+              </div>
+              <% }) %>
+            </div>
+
+            <div style="clear:both;"></div>
+          </div>
+          <div style="margin-bottom:68px;"></div>
+        </div>
+        <script>
+            $(window).resize(function () {
+              var div_width = $('.productPrice').width();
+              $('.productPrice').height(1.4 * div_width);
+            });
+            $(window).load(function () {
+              var div_width = $('.productPrice').width();
+              $('.productPrice').height(1.4 * div_width);
+            });
+        </script>
+      </div>
+    </div>
+  </div>
+</div>
+<% include ../footer.ejs %>
+</body>
+</html>

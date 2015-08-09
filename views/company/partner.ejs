@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title><%= language.about.partners[local] %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css'/>
+  <link rel='stylesheet' href='/stylesheets/style1.css'/>
+  <link rel="stylesheet" href="/stylesheets/stylePerson.css"/>
+  <link rel="stylesheet" href="/stylesheets/styleOrder.css"/>
+  <link rel="stylesheet" href="/stylesheets/cart.css"/>
+</head>
+<body>
+<div id="contain">
+  <% include ../header.ejs %>
+  <div>
+    <% include ../img.ejs %>
+    <div class="partnercenter">
+      <div class="shi">
+        <ul class="ulabout">
+          <li class="liabout">
+            <div class="liabout1"><%= language.about.company[local] %></div>
+          </li>
+          <li class="liabout111">
+            <a href="/about" class="aabout"><span class="float"><%= language.about.aboutus[local] %></span>
+              <div class="liEnter1">></div>
+            </a>
+          </li>
+          <li class="liabout111">
+            <a href="/joinus" class="aabout"><span class="float"><%= language.footer.joinus[local] %></span>
+              <div class="liEnter1">></div>
+            </a>
+          </li>
+          <li class="liabout11">
+            <a href="/partner" class="liabout2"><span class="float"><%= language.about.partners[local] %></span>
+              <div class="liEnter1">></div>
+            </a>
+          </li>
+        </ul>
+        <div class="clear"></div>
+      </div>
+      <div class="divpartner">
+        <div class="divabout1"> <%= language.about.partners[local] %></div>
+        <div class="partner_pic">
+          <div>
+            <% for(var i = 0;i < partner.content.length;i++){ %>
+            <% if((i + 1) % 4 == 0){ %>
+            <img src="<%= partner.content[i] %>" class="imgpartner float"/>
+            <% }else{ %>
+            <img src="<%= partner.content[i] %>" class="imgpartner float"/>
+
+            <div class="float verticallineImg"></div>
+            <% } %>
+            <% } %>
+          </div>
+        </div>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+      $(window).resize(function () {
+        var div_width = $('.partner_pic img').width();
+        $('.partner_pic img').height(0.7895 * div_width);
+        $('.verticallineImg').height(0.7895 * div_width * 0.84);
+        $('.verticallineImg').css('margin-top', 0.7895 * div_width * 0.84 * 0.095);
+
+      });
+      $(window).load(function () {
+        var div_width = $('.partner_pic img').width();
+        $('.partner_pic img').height(0.7895 * div_width);
+        $('.verticallineImg').height(0.7895 * div_width * 0.84);
+        $('.verticallineImg').css('margin-top', 0.7895 * div_width * 0.84 * 0.095);
+      });
+    });
+  </script>
+</div>
+<% include ../footer.ejs %>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<h3>管理员设置</h3>
+
+<div class="pull-right">
+  <a href="#/setting/new" class="btn btn-primary btn-sm">
+    <span class="glyphicon glyphicon-plus">新建</span>
+  </a>
+</div>
+<table class="table table-striped"  >
+  <thead>
+    <tr>
+     <td class="col-sm-1"></td>
+     <td class="col-sm-9">用户名</td>
+     <td class="col-sm-2">操作</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="admin in admins">
+      <td>{{$index + 1}}</td>
+      <td>
+        {{admin.name}}
+      </td>
+      <td class="action">
+        <a href="#/setting/{{admin._id}}" class="btn btn-primary btn-xs">
+          <span class="glyphicon glyphicon-edit"></span>编辑
+        </a>
+        <a href="javascript:void(0)" ng-click="rmAdmin(admin._id)" class="btn btn-danger btn-xs">
+          <span class="glyphicon glyphicon-remove"></span>删除
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>

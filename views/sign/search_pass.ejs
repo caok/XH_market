@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%=language.resetfist.title[local]%></title>
+      <link rel='stylesheet' href='/stylesheets/style.css' />
+      <link rel='stylesheet' href='/stylesheets/style1.css' />
+  </head>
+  <body>
+  <div id="contain">
+   <%include ../header.ejs%>
+    <% if (locals.success) { %>
+      <strong><%= success %></strong>
+    <% } %>
+      <form action='/search_pass' method='post'>
+     <div class="centerresetPassword">
+       <div class="divreset1">
+         <%if(local=='zh'){%>
+         <div class="returnPassword">
+           <%= language.resetfist.searchpass[local] %>
+         </div>
+         <%}if(local=='en'){%>
+         <div class="returnPassword" style="width: 300px">
+           <%= language.resetfist.searchpass[local] %>
+         </div>
+         <%}%>       </div>
+          <div class="divreset">
+           <table style="width: 100%">
+               <tr>
+                   <td class="div2 divreset2" style="width: 10%">
+                       <%=language.resetfist.name[local]%>
+                   </td>
+                   <td style="width: 20%">
+                       <div style="width: 90%;height: 3px;background-color: #c7c7c7;margin-left: auto;margin-right: auto"></div>
+                   </td>
+                   <td class="div2" style="width:10%">
+                       <%=language.resetfist.identity[local]%>
+                   </td>
+                   <td style="width:20%">
+                       <div style="width: 90%;height: 3px;background-color: #c7c7c7;margin-left: auto;margin-right: auto"></div>
+                   </td>
+                   <td class="div2" style="width:10%">
+                       <%=language.resetfist.reset[local]%>
+                   </td>
+                   <td style="width:20%">
+                       <div style="width: 90%;height: 3px;background-color: #c7c7c7;margin-left: auto;margin-right: auto"></div>
+                   </td>
+                   <td class="div2" style="width:10%;text-align: left;padding-left: 1em">
+                       <%=language.resetfist.success[local]%>
+                   </td>
+               </tr>
+           </table>
+       </div>
+        <div class="divreset3">
+          <% if (locals.error) { %>
+           <div class="error_font" style="text-align: left"><%= locals.error %></div>
+          <% } %>
+
+          <div class="divResetIn">
+              <div class="userspan"><%=language.resetfist.email[local]%></div>
+               <div class="resetBo">
+                 <input name='email' type='text'  class="inputreset" placeholder="<%=language.resetfist.email2[local]%>"/>
+               </div>
+             <div class="clear"></div>
+           </div>
+           <!--<div class="divResetInPass">-->
+              <!--&lt;!&ndash;<div class="userspan"><%=language.resetfist.code[local]%></div>&ndash;&gt;-->
+               <!--&lt;!&ndash;<div class="resetBo">&ndash;&gt;-->
+                   <!--&lt;!&ndash;<input type="text"  name="identifyingCode" class="inputreset1"/>&ndash;&gt;-->
+               <!--&lt;!&ndash;</div>&ndash;&gt;-->
+              <!--<div class="clear"></div>-->
+           <!--</div>-->
+           <div >
+             <button name="next" class="continue" ><%=language.resetfist.next[local]%></button>
+           </div>
+        </div>
+ </div>
+      </form>
+  </div>
+    <%include ../footer.ejs%>
+  </body>
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title><%=language.products.productDetails[local]%></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel='stylesheet' href='/stylesheets/style1.css'/>
+    <link rel="stylesheet" href="/stylesheets/stylePerson.css"/>
+    <link rel="stylesheet" href="/stylesheets/styleOrder.css"/>
+    <link rel="stylesheet" href="/stylesheets/cart.css"/>
+ </head>
+<body>
+<div class="div_div">
+  <div class="buy_success">
+    <div><%=language.products.success[local]%></div>
+  </div>
+</div>
+<div id="contain">
+<% include ../header.ejs %>
+<div>
+    <% include ../img.ejs %>
+    <div class="productIntroduce">
+        <div class="introduce">
+            <div class="allProduct1">
+                <div>
+                    <table>
+                        <tr>
+                            <td class="font20 allProduct2">
+                                <a class="marginRight" href="/category" id="a1"><%=language.products.allProducts[local]%></a>
+                            </td>
+                            <td>
+                                <div class="productVertical marginRight"></div>
+                            </td>
+                            <td class="font2094 allProduct2">
+                                <a class=" marginRight1" href="/category/<%= category._id %>" id="a2">
+                                    <% if(local === "zh"){ %>
+                                    <%= category.name %>
+                                    <% }else{ %>
+                                    <%= category.enName %>
+                                    <% } %>
+                                </a>
+                            </td>
+                            <td>
+                                <div class="productVertical1 marginRight1"></div>
+                            </td>
+                            <td class="font2094">
+                                <%= product.name[local] %>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div style="float:left;width: 45%;margin-top: 2.4%" id="show_pic">
+                    <div class="spec"><img src="<%= product.images[0] %>" class="productPage"/></div>
+                    <div class="spec-list">
+                        <a href="javascript:;" class="spec-control disabled" id="spec-forward">
+                            <img src="/images/jiantou1.png" alt=""/>
+                        </a>
+                        <a href="javascript:;" class="spec-control" id="spec-backward">
+                            <img src="/images/jiantou2.png" alt=""/>
+                        </a>
+
+                        <div class="spec-items">
+                            <ul>
+                                <% product.images.forEach(function(image){ %>
+                                <li>
+                                    <img src="<%= image %>">
+                                </li>
+                                <% }) %>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <script>
+                  $(window).load(function(){
+                    var introduce_width = $('.introduce').width();
+                    $('.introduce').height(introduce_width*0.61);
+                    var pic_width = $('.spec').width();
+                    $('.productPage').width(pic_width);
+                    $('.productPage').height(pic_width);
+                    var pic_list_width = $('.spec-list').width();
+//                    $('.spec-list').height(pic_list_width*0.1276);
+                    $('.spec-control').height(pic_list_width*0.1276);
+                    $('.spec-items').height(pic_list_width*0.1276);
+                    var li_height = $('.spec-items').height();
+                    $('.spec-items ul li').width(li_height*1.175);
+                    $('.spec-items ul li').height(li_height);
+                    $('.spec-items ul li img').height(li_height*0.96);
+                    $('.spec-items ul li img').width(li_height*0.96);
+//                    alert("img:gao"+$('.spec-items ul li img').height());
+//                    alert("img:kuai"+$('.spec-items ul li img').width());
+//                    alert("li:kuai:"+$('.spec-items ul li').width());
+//                    alert("li:gao:"+$('.spec-items ul li').height());
+                    $(".spec-items ul").width($('.spec-items ul li').width() *<%= product.images.length %>);
+                    if (<%= product.images.length %> <= 6)
+                    $("#spec-backward").addClass("disabled");
+                  });
+                  $(window).resize(function () {
+                    var introduce_width = $('.introduce').width();
+                    $('.introduce').height(introduce_width*0.61);
+                    var pic_width = $('.spec').width();
+                    $('.productPage').width(pic_width);
+                    $('.productPage').height(pic_width);
+                    var pic_list_width = $('.spec-list').width();
+//                    $('.spec-list').height(pic_list_width*0.1276);
+                    $('.spec-control').height(pic_list_width*0.1276);
+                    $('.spec-items').height(pic_list_width*0.1276);
+                    var li_height = $('.spec-items').height();
+                    $('.spec-items ul li').width(li_height*1.175);
+                    $('.spec-items ul li').height(li_height);
+                    $('.spec-items ul li img').height(li_height*0.96);
+                    $('.spec-items ul li img').width(li_height*0.96);
+                  });
+
+                    $(".spec-items ul li").click(function () {
+                      $(".spec-items ul li img.cur").removeClass('cur');
+                      $(this).find('img').addClass('cur');
+                      $('.spec img').attr("src", $(this).find('img')[0].src);
+                    });
+
+                    $("#spec-forward").click(function () {
+                      var left = parseInt($('.spec-items ul').css('left'));
+                      if (left < 0) {
+                        $("#spec-backward").removeClass('disabled');
+                        $('.spec-items ul').css('left', left + $('.spec-items ul li').width());
+                        if (parseInt($('.spec-items ul').css('left')) >= 0) {
+                          $("#spec-forward").addClass("disabled");
+                        }
+                      } else {
+                        $("#spec-forward").addClass("disabled");
+                      }
+                      ;
+                    });
+
+                    $("#spec-backward").click(function () {
+                      var left = parseInt($('.spec-items ul').css('left'));
+                      if ($(".spec-items ul").width() + left > 560) {
+                        $("#spec-forward").removeClass('disabled');
+                        $('.spec-items ul').css('left', left - $('.spec-items ul li').width());
+                        if (parseInt($('.spec-items ul').css('left')) + $(".spec-items ul").width() <= 560) {
+                          $("#spec-backward").addClass("disabled");
+                        }
+                      } else {
+                        $("#spec-backward").addClass("disabled");
+                      }
+                      ;
+                    });
+
+                </script>
+                <div style="float:left;margin-top:2.4%;width: 50%">
+                    <div class="font45 distance" style="font-size: 20px">
+                        <%= product.name[local] %>
+                    </div>
+                    <div class="font2094 color distance" style="font-size: 16px;margin-top: 10px">
+                        <% if(local === "zh"){ %>
+                        <%= category.name %>
+                        <% }else{ %>
+                        <%= category.enName %>
+                        <% } %>
+                    </div>
+                    <div style="margin-left:8.9%;margin-top:3%;">
+                        <div>
+                            <div class="float">
+                                <a href="#evaluate">
+                                    <span class="font152  color3" style="font-size: 14px"><%=language.products.productRating[local]%></span>
+                                    <img src="/images/yellowArrow.png" >
+                                </a>
+                            </div>
+
+                        </div>
+                        <div class="float" style="margin-left:4.1%;position: relative">
+                            <div class="float" id="jiantou" style="cursor: pointer">
+                                <span class="font152 color3" style="font-size: 14px"><%=language.products.payment[local]%></span>
+                                <img src="/images/yellowArrow.png" >
+                            </div>
+                            <div id="zhiFuFangShi" class="zhiFuFangShi">
+                                <a style="width:50%; float:left;">支付宝</a>
+                                <!--<a style="width:50% ;float:left;">雅虎</a>-->
+                                <!--<a style="width:50%;float:left;"> 百度</a>-->
+                                <!--<a style="width:50%;float:left;">雅虎</a>-->
+                            </div>
+                        </div>
+                        <script>
+                          $(document).ready(function(){
+                            $("#jiantou").click(function(){
+                              $("#zhiFuFangShi").toggleClass('zhiFuFangShi');
+                            });
+                          });
+                        </script>
+                        <div style="clear: both;">
+                        </div>
+                    </div>
+                    <div class="price2" style="font-size: 20px">
+                      ￥ <%= product.price %>
+                    </div>
+                    <div class="amount">
+                      <form action='/placeorder' method='post'>
+                        <div class="amount1">
+                            <div style="float:left;">
+                                <span class="price1"><%=language.products.quantity[local]%>：</span>
+                            </div>
+                            <input type="hidden" name="id" value="<%= product._id %>">
+                            <div class="shoppingBorder float">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <img src="/images/jiantou3.png" width="8" height="10"
+                                                 style="cursor:pointer;" id="num_cut">
+                                        </td>
+                                        <td>
+                                            <input type="text" value="1" style="border:none;width:32px;text-align:center;" id="num" name="quantity" onkeypress="return IsNum(event)"/>
+                                        </td>
+                                        <td>
+                                            <img src="/images/jiantou4.png" width="8" height="10"
+                                                 style="cursor:pointer;" id="num_add">
+                                        </td>
+                                    </tr>
+                                </table>
+                                <script>
+
+                                  function IsNum(e) {
+                                    var k = window.event ? e.keyCode : e.which;
+                                    if (((k >= 48) && (k <= 57)) || k == 8 || k == 0) {
+                                    } else {
+                                      if (window.event) {
+                                        window.event.returnValue = false;
+                                      }
+                                      else {
+                                        e.preventDefault(); //for firefox
+                                      }
+                                    }
+                                  }
+
+                                    $("#num_cut").click(function () {
+                                        var a = $("#num").val();
+                                        if(a<=1){
+                                            $("#num").val(1);
+                                        }else{
+                                            $("#num").val(--a);
+                                        }
+                                    });
+                                    $("#num_add").click(function () {
+                                        var a = $("#num").val();
+                                        if(a >= <%= product.quantity %>){
+                                            $("#num").val(<%= product.quantity %>);
+                                        }else{
+                                            $("#num").val(++a);
+                                        }
+                                    });
+                                </script>
+                            </div>
+                            <div style="float:left;">
+                                <span class="price1">(<%=language.products.inventory[local]%>: <%= product.quantity %>)</span>
+                            </div>
+                            <div style="clear: both;">
+                            </div>
+                        </div>
+                        <div>
+                           <a class="buttonAddcart" onclick="addtocart()"><%=language.products.addcart[local]%></a>
+                           <button class="buttonAddcart1"><%=language.products.buyNow[local]%></button>
+                        </div>
+                        <div class="clear"></div>
+                      </form>
+                      <script>
+                        function addtocart(){
+                          var formdata = {quantity: $("#num").val(),
+                                          productId: "<%= product._id %>"};
+                          $.ajax({
+                            url: "/addtocart",
+                            type: "POST",
+                            data: formdata,
+                            success: function (res) {
+                              if(res.result === "success"){
+                                $('.div_div').css("display","block");
+                                var top = ($(window).height() - $('.buy_success').height()) / 2;
+                                var left = ($(window).width() - $('.buy_success').width()) / 2;
+                                var scrollTop = $(document).scrollTop();
+                                var scrollLeft = $(document).scrollLeft();
+                                $('.buy_success').css({ position: 'absolute', left: left + scrollLeft , top: ($(window).height() - $('.buy_success').height()) / 2 + scrollTop}).show();
+                                $(".circle").text(res.cartnum);
+
+                              }else if(res.result === "login"){
+                                window.location.href = "/login";
+                              }else{
+                                alert(res.message);
+                              };  
+                            }   
+                          }); 
+                        };
+                      </script>
+                    </div>
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+        </div>
+        <div class="productMessage">
+            <div>
+                <span class="productMessage1" <%if(local=='en'){%> style="width: 195px"<%}%>><%=language.products.productDescription[local]%></span>
+            </div>
+            <div>
+                <%- product.description[local] %>
+            </div>
+        </div>
+        <div class="evaluateMessage" id="evaluate">
+            <div><span class="productMessage1"  <%if(local=='en'){%> style="width: 195px"<%}%>><%=language.products.productRating[local]%></span></div>
+            <% product.comments.forEach(function(comment){ %>
+            <div class="distance4">
+                <div>
+                    <img src="/images/person.jpg" class="headImg">
+                </div>
+                <div class="font181 style18">
+                    <%= comment.userName %>
+                </div>
+                <div class="float width">
+                    <div class="font13">
+                        <%= format_datetime(comment.happenedAt, true) %>
+                    </div>
+                    <div class="font182">
+                        <%= comment.title %>
+                    </div>
+                    <div class="font181 distance3">
+                        <%= comment.content %>
+                    </div>
+                </div>
+                <div style="clear:both;">
+                </div>
+            </div>
+            <% }) %>
+        </div>
+    </div>
+</div>
+</div>
+<% include ../footer.ejs %>
+<script>
+
+  $('body').click(function(){
+    $('.div_div').css("display","none")
+  })
+  $(window).load(function () {
+    $('.div_div').css("display","none")
+    var div_height = $('#contain').height();
+    $('.div_div').height(div_height + 285);
+  });
+</script>
+</body>
+</html>

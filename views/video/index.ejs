@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title><%=language.video.title[local]%></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/style1.css' />
+    <link rel="stylesheet" href="/stylesheets/stylePerson.css"/>
+    <link rel="stylesheet" href="/stylesheets/styleOrder.css" />
+    <link rel="stylesheet" href="/stylesheets/cart.css"/>
+</head>
+<body>
+  <%include ../header.ejs%>
+  <div>
+    <%include ../img.ejs%>
+    <div class="video">
+        <div class="float" style="width: 23%">
+            <ul class="ulabout">
+                <li class="liabout">
+                    <div class="liabout1"><%=language.video.video[local]%></div>
+                </li>
+                <% vcates.forEach(function(vcate){ %>
+                  <% if(vcategory.id == vcate._id){ %>
+                    <li class="liabout11">
+                    <a href="/vcategory/<%= vcate._id %>" class="liabout2">
+                  <% }else{ %>
+                    <li class="liabout111">
+                    <a href="/vcategory/<%= vcate._id %>" class="aabout">
+                  <% } %>
+                    <%= vcate.name[local] %>
+                    <div class="liEnter1">></div>
+                  </a>
+                  </li>
+                <% }) %>
+            </ul>
+            <div class="clear"></div>
+         </div>
+        <div class="float distance6">
+          <div class="divhead margin46">
+            <%= vcategory.name[local] %>
+          </div>
+          <% videos.forEach(function(video){ %>
+            <div class="margin46">
+              <div class="float" style="width: 70%">
+                <video src="<%= video.url %>" class="prog"></video>
+                <!--<iframe class="prog" src="http://player.youku.com/embed/XNzE0Nzc0OTQ0" frameborder=0-->
+                        <!--allowfullscreen></iframe>-->
+              </div>
+              <div class="dis">
+                <div class="divVideo">
+                  <span class="spanVideo">
+                    <%= video.happenedAt.getDate() %></br>
+                    <%= format_month(video.happenedAt.getMonth()) %>
+                  </span>
+                </div>
+                <div style="border-bottom: 2px solid #aeaeae;margin-top:11px;margin-bottom:9px;width: 98px"> </div>
+                <div>
+                  <a name="more" class="buttonMore" href="/videos/<%= video._id %>">MORE&nbsp;<img src="/images/more.png" class="moremore"></a>
+                </div>
+              </div>
+              <div style="clear:both;">
+              </div>
+            </div>
+          <% }) %>
+        </div>
+    </div>
+    <script>
+      $(function () {
+        $(window).resize(function () {
+          var div_width = $('.productPrice').width();
+          $('.productPrice').height(1.4 * div_width);
+//          var div_width = $('.prog').width();
+//          $('.prog').height(0.75 * div_width);
+        });
+        $(window).load(function () {
+          var div_width = $('.productPrice').width();
+          $('.productPrice').height(1.4 * div_width);
+//          var div_width = $('.prog').width();
+//          $('.prog').height(0.75 * div_width);
+        });
+      });
+
+    </script>
+  </div>
+  <div class="clear"></div>
+  <% include ../footer.ejs %>
+</body>
+</html>
+

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%=language.login.title[local]%></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/style1.css' />
+  </head>
+  <body>
+
+  <% if (locals.error2) { %>
+  <div class="div_div" style="display: block">
+    <div class="success_div">
+      <div class="success_font"><img src="/images/cha.png"><span><%=language.login.error1before[local]%><%=error2%><%=language.login.error1after[local]%></span></div>
+      <div class="success_font1">
+        <div style="margin-top: 48px;"><%=language.login.error2[local]%></div>
+        <div class="success_font1_div2"><%=language.login.error3before[local]%><span style="color: #000000"><%=error2%></span><%=language.login.error3after[local]%></div>
+      </div>
+    </div>
+  </div>
+  <% } %>
+  <div id="contain">
+  <div class="login">
+  <% include ../header.ejs %>
+  <div class="clear"></div>
+      <form action='/login' method='post'>
+      <div class="divcenter">
+              <div>
+                  <ul class="ulcenter">
+                      <li class=" lienter" >
+                         <div class="accountlogin"> <%=language.login.login[local]%> </div>
+                      </li>
+                      <li class="lienter1" >
+                         <a href="/signup" class="accountRegistration"><%=language.login.register[local]%></a>
+                      </li>
+                  </ul>
+                  <div class="clear"></div>
+              </div>
+              <div id="center">
+                <% if (locals.error) { %>
+                    <div class="error_font"><%= locals.error %></div>
+                <% } %>
+                  <div class="centerInput">
+                      <div class="imgenter">
+                         <img src="images/user1.png" style="margin-top:10px;" />
+                      </div>
+                      <div class="inputeEmail">
+                        <% if (locals.loginname) { %>
+                           <input name='loginname' type='text' value='<%= loginname %>'  class="diventer" placeholder="<%=language.login.account[local]%>"/>
+                        <% } else { %>
+                          <input name='loginname' type='text'  class="diventer"placeholder="<%=language.login.account[local]%>"/>
+                        <% } %>
+                      </div>
+                      <div class="clear"></div>
+                  </div >
+                  <div class="centerInput1">
+                      <div class="imgenter">
+                          <img src="images/password%20.png" style="margin-top:10px;"  />
+                      </div>
+                      <div class="inputeEmail">
+                          <input name='password' type='password' class="diventer1" placeholder="<%=language.login.password[local]%>"/>
+                      </div>
+                      <div style="clear: both;">
+
+                      </div>
+                  </div>
+                  <div style="margin-top:20px;">
+                      <div class="floatRight">
+                           <input type="submit" class="buttonenter" value="<%=language.login.dengru[local]%>">
+                      </div>
+                      <table>
+                          <tr >
+                              <td style="background-color:#ffffff;height:55px;">
+                                  <div class="float">
+                                      <input type="checkbox" name="remember" value=true class="divrepassword">
+                                  </div>
+                                  <div class="float brepassword"><%=language.login.remember[local]%></div>
+                                  <div class="float"><a href="/search_pass" class="diva float"><%=language.login.forget[local]%>?</a></div>
+                              </td>
+                          </tr>
+                      </table>
+                      <div class="clear"></div>
+                  </div>
+              </div>
+          </div>
+      </form>
+  </div>
+  </div>
+  <% include ../footer.ejs%>
+  </body>
+<script>
+//  $(window).load(function () {
+//    var div_height = $('#contain').height();
+//    $('.div_div').height(div_height + 285);
+//  });
+//  $('.error_div').css({ position: 'absolute', top: (($(window).height() - $('.error_div').height()) / 2)+ $(document).scrollTop(), left: (($(window).width() - $('.error_div').width()) / 2)+$(document).scrollLeft()}).show();
+
+  $('.success_div').css({ position: 'absolute', top: (($(window).height() - $('.success_div').height()) / 2)+ $(document).scrollTop(), left: (($(window).width() - $('.success_div').width()) / 2)+$(document).scrollLeft()}).show();
+
+  $('body').click(function(){
+    $('.div_div').css("display","none")
+  });
+</script>
+</html>

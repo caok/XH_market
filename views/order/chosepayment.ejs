@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title><%=language.myOrder.title[local]%></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel='stylesheet' href='/stylesheets/style1.css' />
+  <link rel="stylesheet" href="/stylesheets/stylePerson.css" />
+  <link rel="stylesheet" href="/stylesheets/styleOrder.css" />
+  <link rel="stylesheet" href="/stylesheets/cart.css" />
+</head>
+
+<body>
+  <div id="contain">
+    <%include ../header.ejs%>
+    <div class="cart">
+      <div class="returnPassword" style="margin-left: 4%">
+        <%=language.myOrder.order[local]%>
+      </div>
+      <div class="divsubmit">
+        <table style="width: 100%">
+          <tr>
+            <td class="div3 divreset2" style="text-align: center">
+              <%=language.myOrder.viewCart[local]%>
+            </td>
+            <td style="width: 34%">
+              <div style="width: 100%;height: 3px;background-color: #838383;"></div>
+            </td>
+            <td class="div3 divreset2" style="text-align: center">
+              <%=language.myOrder.paymentMethod[local]%>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="pay">
+        <div class="payable">
+          <%=language.myOrder.totalGross[local]%>：￥<%= order.pay %> (<%=language.other.freight[local]%>: ￥<%= order.freight %>)
+        </div>
+        <div class="list1">
+          <% order.products.forEach(function(pd){ %>
+            <div class="wap">
+              <a href="/product/<%= pd.productId %>" class="gap">
+                <img src="<%= pd.coverUrl %>" width="104px" height="104px" />
+              </a>
+              <div class="sap">
+                <div class="price">
+                  <%= pd.name[local] %></br>
+                  ￥<%= pd.price %></br>
+                  x<%= pd.quantity %>
+                </div>
+              </div>
+              <div class="clear"></div>
+            </div>
+          <% }) %>
+        </div>
+        <div class="takeoverGoods">
+          <%=language.myOrder.payment[local]%>:
+        </div>
+        <form action="/payment/<%= order._id %>" method="POST">
+          <div class="zhifulei">
+            <div>
+              <input type="radio" class="choose1" value="alipay" name="payment" checked="checked"><span class="choose">支付宝</span>
+            </div>
+          </div>
+          <div class="ment">
+            <input type="submit" class="payment" value="<%=language.myOrder.confirmPayment[local]%>">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <% include ../footer.ejs %>
+</body>
+
+</html>

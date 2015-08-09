@@ -1,0 +1,71 @@
+html body {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  background: #e5e5e5;
+  font-family:'calibri','Microsoft Yahei','宋体';
+}
+#login {
+  width: 600px;
+  padding: 0;
+  top: 50%;
+  margin-left: -300px;
+  margin-top: -200px;
+  left: 50%;
+  position: absolute;
+  background-color: #fff;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 0px 2px rgba(0, 0, 0, 0.07);
+  -moz-box-shadow: 0 0px 2px rgba(0, 0, 0, 0.07);
+  box-shadow: 0 0px 2px rgba(0, 0, 0, 0.07);
+}
+#login .header {
+  padding: 10px 12px;
+  background-color: hsl(0, 0%, 93%);
+}
+.header span {
+  font-size: 20px;
+  color: #646161;
+  font-weight: 700;
+}
+#login .inner {
+  padding: 20px 10px;
+}
+.control-group {
+  margin-bottom: 20px;
+}
+.control-label {
+  float: left;
+  width: 160px;
+  padding-top: 5px;
+  text-align: right;
+}
+.control {
+  padding: 0;
+  margin-left: 180px;
+  margin-right: 0;
+  width: 290px;
+}
+#signin {
+  width: 90px;
+}
+#alert {
+  margin-left: 180px;
+  width: 290px;
+}
+#alert div.alert {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+input.ng-invalid.ng-dirty {
+  background-color: #FA787E;
+}
+input.ng-valid.ng-dirty {
+  background-color: #ffffff;
+}
+#error {
+  display: none;
+}

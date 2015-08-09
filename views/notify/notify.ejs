@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FITTERGEAR</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel='stylesheet' href='/stylesheets/style1.css' />
+</head>
+<body>
+<div id="contain">
+  <% include ../header.ejs %>
+  <div style="width: 90%;margin-right: auto;margin-left: auto">
+    <% if (locals.error) { %>
+  <div class="notify_div">
+  <div>
+      <div class="notify_success_div">
+        <img src="/images/cha.png" alt="" class="float"/>
+        <div class="float" ><%= error %></div>
+        <div class="clear"></div>
+        <!--<a href="/">返回首页</a>-->
+      </div>
+    </div>
+    </div>
+    <% } %>
+    <% if (locals.success) { %>
+    <div>
+      <ul class="ulcenter">
+        <li class=" lienter" >
+          <a href="login" class="accountRegistration"> <%=language.login.login[local]%></a>
+        </li>
+        <li class="lienter1" >
+          <div class="accountlogin"><%=language.login.register[local]%> </div>
+        </li>
+      </ul>
+      <div class="clear"></div>
+    </div>
+  <div class="notify_div">
+  <div class="notify_success_div">
+      <img src="/images/gou.png" alt="" class="float"/>
+      <div class="float" ><%= success %></div>
+      <div class="clear"></div>
+      <img src="/images/cart.jpg" style="width: 100px;height: 100px"><br>
+      <a href="/category" class="a1"><%=language.other.continueShopping[local]%></a>
+    </div>
+    </div>
+    <% } %>
+  </div>
+  <script>
+    var left = ($(window).width() - $('.notify_div').width()) / 2;
+    var scrollLeft = $(document).scrollLeft();
+    $('.notify_div').css({ position: 'relative', left: left + scrollLeft }).show();
+  </script>
+</div>
+<% include ../footer.ejs %>
+</body>
+</html>

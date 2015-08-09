@@ -1,0 +1,67 @@
+<h3>基础信息</h3>
+<div class="alert">
+  {{alert}}
+</div>
+
+<div class="group">
+  <div class="form-group">
+    <label class="col-sm-2 control-label">顶部联系电话: </label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model='basicinfo.content.tel' required />
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">首页大图: </label>
+    <div class="col-sm-10">
+      <span class="help-block">建议尺寸: 1294*496px</span>
+      <img class="middle" ng-src="{{basicinfo.content.indexImg}}">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <span class="btn btn-success fileinput-button">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span>上传图片</span>
+        <input id="imgupload" type="file" fileupload name="files" data-url="/upload" done="uploadFinished(e, data, 'indexImg')">
+      </span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label">其他页面的大图: </label>
+    <div class="col-sm-10">
+      <span class="help-block">建议尺寸: 1294*382px</span>
+      <img class="middle" ng-src="{{basicinfo.content.otherImg}}">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <span class="btn btn-success fileinput-button">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span>上传图片</span>
+        <input id="imgupload" type="file" fileupload name="files" data-url="/upload" done="uploadFinished(e, data, 'otherImg')">
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class="group">
+  <h3>运费规则</h3>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">运费: </label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model='basicinfo.content.freight' required />
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">订单满多少钱包邮: </label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="basicinfo.content.freeCondition" required />
+    </div>
+  </div>
+</div>
+
+<div id="submitDiv" class="container">
+  <a class="btn btn-warning" href='#/index'>撤销</a>
+  <button class="btn btn-primary" ng-disabled="form.$invalid" ng-click="submit()">提交</button>
+</div>

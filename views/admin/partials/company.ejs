@@ -1,0 +1,227 @@
+<div class="alert">
+  {{alert}}
+</div>
+
+<div class="group">
+  <h3>联系我们</h3>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Email: </label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model='contact.content.email' required />
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">电话: </label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model='contact.content.tel' required />
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">传真: </label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model='contact.content.fax' required />
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">地址: </label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="contact.content.address['zh']" required />
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">地址(English): </label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="contact.content.address['en']" required />
+    </div>
+  </div>
+</div>
+
+<div class="group">
+  <h3>合作伙伴</h3>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">合作伙伴LOGO:</label>
+    <div class="col-sm-10">
+      <span class="help-block">建议尺寸: 340×310px</span>
+      <ul class="imglist">
+        <li ng-repeat="img in partner.content" >
+          <button type="button" class="close" ng-click="partner.content.splice($index, 1)">&times;</button>
+          <img class="theimg" ng-src="{{img}}">
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <span class="btn btn-success fileinput-button">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span>上传图片</span>
+        <input id="imgupload" type="file" fileupload name="files" data-url="/upload" multiple done="uploadFinished(e, data, 'content')">
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class="group" ng-init="aboutTab='zh'">
+  <h4>关于我们</h4>
+  <div class="pull-right">
+  <a href="#/company/about/zh" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit"></span>编辑(zh)</a>
+  <a href="#/company/about/en" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit"></span>编辑(en)</a>
+  </div>
+  <ul class="nav nav-tabs" style="margin-top: 15px">
+    <li ng-class="{active: aboutTab=='zh'}"><a ng-click="aboutTab='zh'">中文</a></li>
+    <li ng-class="{active: aboutTab=='en'}"><a ng-click="aboutTab='en'">English</a></li>
+  </ul>
+  <div class="tab-content" style="margin-top: 10px">
+    <div class="tab-pane fade in" ng-class="{active: aboutTab == 'zh'}">
+      {{ about.content['zh'] | delHtmlTag }}
+    </div>
+    <div class="tab-pane fade in" ng-class="{active: aboutTab == 'en'}">
+      {{ about.content['en'] | delHtmlTag }}
+    </div>
+  </div>
+</div>
+
+<div class="group" ng-init="joinusTab='zh'">
+  <h4>加入我们</h4>
+  <div class="pull-right">
+  <a href="#/company/joinus/zh" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit"></span>编辑(zh)</a>
+  <a href="#/company/joinus/en" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit"></span>编辑(en)</a>
+    </div>
+  <ul class="nav nav-tabs" style="margin-top: 15px">
+    <li ng-class="{active: joinusTab=='zh'}"><a ng-click="joinusTab='zh'">中文</a></li>
+    <li ng-class="{active: joinusTab=='en'}"><a ng-click="joinusTab='en'">English</a></li>
+  </ul>
+  <div class="tab-content" style="margin-top: 10px">
+    <div class="tab-pane fade in" ng-class="{active: joinusTab == 'zh'}">
+      {{ joinus.content['zh'] | delHtmlTag }}
+    </div>
+    <div class="tab-pane fade in" ng-class="{active: joinusTab == 'en'}">
+      {{ joinus.content['en'] | delHtmlTag }}
+    </div>
+  </div>
+</div>
+
+<div class="group" ng-init="deliveryTab='zh'">
+  <h4>物流与配送</h4>
+  <div class="pull-right">
+  <a href="#/company/delivery/zh" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit"></span>编辑(zh)</a>
+  <a href="#/company/delivery/en" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit"></span>编辑(en)</a>
+    </div>
+  <ul class="nav nav-tabs" style="margin-top: 15px">
+    <li ng-class="{active: deliveryTab=='zh'}"><a ng-click="deliveryTab='zh'">中文</a></li>
+    <li ng-class="{active: deliveryTab=='en'}"><a ng-click="deliveryTab='en'">English</a></li>
+  </ul>
+  <div class="tab-content" style="margin-top: 10px">
+    <div class="tab-pane fade in" ng-class="{active: deliveryTab == 'zh'}">
+      {{ delivery.content['zh'] | delHtmlTag }}
+    </div>
+    <div class="tab-pane fade in" ng-class="{active: deliveryTab == 'en'}">
+      {{ delivery.content['en'] | delHtmlTag }}
+    </div>
+  </div>
+</div>
+
+<div class="group"  ng-init="refundTab='zh'">
+  <h4>退换货政策</h4>
+  <div class="pull-right">
+  <a href="#/company/refund/zh" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit"></span>编辑(zh)</a>
+  <a href="#/company/refund/en" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit"></span>编辑(en)</a>
+    </div>
+  <ul class="nav nav-tabs" style="margin-top: 15px">
+    <li ng-class="{active: refundTab=='zh'}"><a ng-click="refundTab='zh'">中文</a></li>
+    <li ng-class="{active: refundTab=='en'}"><a ng-click="refundTab='en'">English</a></li>
+  </ul>
+  <div class="tab-content" style="margin-top: 10px">
+    <div class="tab-pane fade in" ng-class="{active: refundTab == 'zh'}">
+      {{ refund.content['zh'] | delHtmlTag }}
+    </div>
+    <div class="tab-pane fade in" ng-class="{active: refundTab == 'en'}">
+      {{ refund.content['en'] | delHtmlTag }}
+    </div>
+  </div>
+</div>
+
+<div class="group" ng-init="warrantyTab='zh'">
+  <h4>保修信息</h4>
+  <div class="pull-right">
+  <a href="#/company/warranty/zh" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit"></span>编辑(zh)</a>
+  <a href="#/company/warranty/en" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit"></span>编辑(en)</a>
+    </div>
+  <ul class="nav nav-tabs" style="margin-top: 15px">
+    <li ng-class="{active: warrantyTab=='zh'}"><a ng-click="warrantyTab='zh'">中文</a></li>
+    <li ng-class="{active: warrantyTab=='en'}"><a ng-click="warrantyTab='en'">English</a></li>
+  </ul>
+  <div class="tab-content" style="margin-top: 10px">
+    <div class="tab-pane fade in" ng-class="{active: warrantyTab == 'zh'}">
+      {{ warranty.content['zh'] | delHtmlTag }}
+    </div>
+    <div class="tab-pane fade in" ng-class="{active: warrantyTab == 'en'}">
+      {{ warranty.content['en'] | delHtmlTag }}
+    </div>
+  </div>
+</div>
+
+<div class="group" ng-init="manguideTab='zh'">
+  <h4>男子选购指引</h4>
+  <div class="pull-right">
+  <a href="#/company/manguide/zh" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit"></span>编辑(zh)</a>
+  <a href="#/company/manguide/en" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit"></span>编辑(en)</a>
+    </div>
+  <ul class="nav nav-tabs" style="margin-top: 15px">
+    <li ng-class="{active: manguideTab=='zh'}"><a ng-click="manguideTab='zh'">中文</a></li>
+    <li ng-class="{active: manguideTab=='en'}"><a ng-click="manguideTab='en'">English</a></li>
+  </ul>
+  <div class="tab-content" style="margin-top: 10px">
+    <div class="tab-pane fade in" ng-class="{active: manguideTab == 'zh'}">
+      {{ manguide.content['zh'] | delHtmlTag }}
+    </div>
+    <div class="tab-pane fade in" ng-class="{active: manguideTab == 'en'}">
+      {{ manguide.content['en'] | delHtmlTag }}
+    </div>
+  </div>
+</div>
+
+<div class="group" ng-init="womanguideTab='zh'">
+  <h4>女子选购指引</h4>
+  <div class="pull-right">
+  <a href="#/company/womanguide/zh" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit"></span>编辑(zh)</a>
+  <a href="#/company/womanguide/en" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit"></span>编辑(en)</a>
+    </div>
+  <ul class="nav nav-tabs" style="margin-top: 15px">
+    <li ng-class="{active: womanguideTab=='zh'}"><a ng-click="womanguideTab='zh'">中文</a></li>
+    <li ng-class="{active: womanguideTab=='en'}"><a ng-click="womanguideTab='en'">English</a></li>
+  </ul>
+  <div class="tab-content" style="margin-top: 10px">
+    <div class="tab-pane fade in" ng-class="{active: womanguideTab == 'zh'}">
+      {{ womanguide.content['zh'] | delHtmlTag }}
+    </div>
+    <div class="tab-pane fade in" ng-class="{active: womanguideTab == 'en'}">
+      {{ womanguide.content['en'] | delHtmlTag }}
+    </div>
+  </div>
+</div>
+
+<div class="group" ng-init="sizedescTab='zh'">
+  <h4>尺码说明</h4>
+  <div class="pull-right">
+  <a href="#/company/sizedesc/zh" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit"></span>编辑(zh)</a>
+  <a href="#/company/sizedesc/en" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit"></span>编辑(en)</a>
+    </div>
+  <ul class="nav nav-tabs" style="margin-top: 15px">
+    <li ng-class="{active: sizedescTab=='zh'}"><a ng-click="sizedescTab='zh'">中文</a></li>
+    <li ng-class="{active: sizedescTab=='en'}"><a ng-click="sizedescTab='en'">English</a></li>
+  </ul>
+  <div class="tab-content" style="margin-top: 10px">
+    <div class="tab-pane fade in" ng-class="{active: sizedescTab == 'zh'}">
+      {{ sizedesc.content['zh'] | delHtmlTag }}
+    </div>
+    <div class="tab-pane fade in" ng-class="{active: sizedescTab == 'en'}">
+      {{ sizedesc.content['en'] | delHtmlTag }}
+    </div>
+  </div>
+</div>
+
+<div id="submitDiv" class="container">
+  <button class="btn btn-primary" ng-disabled="form.$invalid" ng-click="submitAll()">提交</button>
+</div>
